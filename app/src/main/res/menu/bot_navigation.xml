@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragment_home"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Home" />
+    <item
+        android:id="@+id/fragment_schedule"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="TKB" />
+    <item
+        android:id="@+id/fragment_history"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Lịch sử" />
+    <item
+        android:id="@+id/fragment_notify"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Thông báo" />
+    <item
+        android:id="@+id/fragment_account"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Tài khoản" />
+</menu>

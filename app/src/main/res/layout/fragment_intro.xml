@@ -14,6 +14,7 @@
 
         <Button
             android:text="Đăng nhập"
+            android:onClick="@{listener::onLoginPressed}"
             android:id="@+id/btn_to_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
 
         <Button
             android:text="Đăng ký"
+            android:onClick="@{listener::onRegisterPressed}"
             android:id="@+id/btn_to_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

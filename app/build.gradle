@@ -52,5 +52,15 @@ dependencies {
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
+    // UI
+    implementation "com.google.android.material:material:$material_version"
+    implementation "com.afollestad.material-dialogs:core:$material_dialog_core_version"
+    implementation "com.afollestad.material-dialogs:datetime:$material_dialog_date_time_version"
+    implementation "com.afollestad.material-dialogs:lifecycle:$material_dialog_lifecycle_version"
+    implementation "de.hdodenhof:circleimageview:$circel_imageviwe_version"
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
 
+    //adapter
+    implementation "com.xwray:groupie:2.7.0"
+    implementation "com.xwray:groupie-kotlin-android-extensions:2.7.0"
 }
