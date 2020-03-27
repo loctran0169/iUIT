@@ -59,6 +59,7 @@ dependencies {
     implementation "com.afollestad.material-dialogs:lifecycle:$material_dialog_lifecycle_version"
     implementation "de.hdodenhof:circleimageview:$circel_imageviwe_version"
     implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
+    implementation 'com.michalsvec:single-row-calednar:1.0.0'
 
     //adapter
     implementation "com.xwray:groupie:2.7.0"

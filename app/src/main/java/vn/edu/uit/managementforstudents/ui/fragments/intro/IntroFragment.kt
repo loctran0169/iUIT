@@ -30,6 +30,7 @@ class IntroFragment : Fragment(), IntroListener {
     }
 
     override fun onRegisterPressed(view: View) {
-
+        nav_host_fragment.findNavController().navigate(R.id.action_fragment_intro_to_registerFragment)
+        Toast.makeText(activity!!,"zoo đăng ký",Toast.LENGTH_LONG).show()
     }
 }
