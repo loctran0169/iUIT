@@ -18,10 +18,10 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(activity!!, R.id.frmMain)
-        val a = NavigationUI.setupWithNavController(bottom_navigaion_view, navController)
+        NavigationUI.setupWithNavController(bottom_navigaion_view, navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
-                R.id.fragment_home -> tv_title_tab.text = "Học gì nào"
+                R.id.fragment_home -> tv_title_tab.text = "Lịch học là gì"
                 R.id.fragment_schedule -> tv_title_tab.text = "Thời khóa biểu"
                 R.id.fragment_history -> tv_title_tab.text = "Lịch sử"
                 R.id.fragment_notify -> tv_title_tab.text = "Thông báo"

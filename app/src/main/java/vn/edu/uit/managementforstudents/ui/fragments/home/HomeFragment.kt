@@ -1,13 +1,13 @@
 package vn.edu.uit.managementforstudents.ui.fragments.home
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.date.dayOfMonth
 import com.michalsvec.singlerowcalendar.calendar.CalendarChangesObserver
 import com.michalsvec.singlerowcalendar.calendar.CalendarViewManager
@@ -18,7 +18,9 @@ import com.michalsvec.singlerowcalendar.utils.DateUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_day_of_week.view.*
 import vn.edu.uit.managementforstudents.R
+import vn.edu.uit.managementforstudents.data.adapters.AdapterSubjectMS
 import vn.edu.uit.managementforstudents.databinding.FragmentHomeBinding
+import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 import java.util.*
 
 class HomeFragment : Fragment(), HomeListener {
@@ -27,6 +29,15 @@ class HomeFragment : Fragment(), HomeListener {
     private var currentYear = 0
     private val currentDay = calendar.dayOfMonth
     lateinit var singleRowCalendar: SingleRowCalendar
+    val viewModel: MainViewModel by lazy {
+        ViewModelProviders
+            .of(this@HomeFragment)
+            .get(MainViewModel::class.java)
+    }
+    val adapterSubject: AdapterSubjectMS by lazy {
+        AdapterSubjectMS(this@HomeFragment.context!!, viewModel.listSubject)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this@HomeFragment
@@ -37,10 +48,6 @@ class HomeFragment : Fragment(), HomeListener {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            activity!!.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            activity!!.window.statusBarColor = Color.WHITE
-        }
         val myCalendarViewManager = object : CalendarViewManager {
             override fun setCalendarViewResourceId(
                 position: Int,
@@ -75,7 +82,7 @@ class HomeFragment : Fragment(), HomeListener {
         val myCalendarChangesObserver = object : CalendarChangesObserver {
             @SuppressLint("SetTextI18n")
             override fun whenSelectionChanged(isSelected: Boolean, position: Int, date: Date) {
-                tvDate.text = "Tháng ${DateUtils.getMonthNumber(date)}, ${DateUtils.getDayNumber(date)} "
+                tvDate.text = "${DateUtils.getMonthName(date).capitalize()}, ${DateUtils.getDayNumber(date)} "
                 tvDay.text = DateUtils.getDayName(date)
                 super.whenSelectionChanged(isSelected, position, date)
             }
@@ -87,10 +94,13 @@ class HomeFragment : Fragment(), HomeListener {
             calendarChangesObserver = myCalendarChangesObserver
             calendarSelectionManager = mySelectionManager
             setDates(getFutureDatesOfCurrentMonth())
-
             init()
         }
         setCurrentDay(currentDay)
+        rcv_subject.run {
+            adapter = adapterSubject
+            layoutManager = LinearLayoutManager(this@HomeFragment.context)
+        }
     }
 
     private fun getDatesOfNextMonth(): List<Date> {
