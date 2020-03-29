@@ -6,12 +6,12 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.data.Model.Subject
+import vn.edu.uit.managementforstudents.data.models.Subject
 
 class AdapterSubjectMS(val context: Context, var list: List<Subject>) : RecyclerView.Adapter<AdapterSubjectMS.ViewHolder>() {
 
@@ -35,11 +35,14 @@ class AdapterSubjectMS(val context: Context, var list: List<Subject>) : Recycler
 //        holder.dayEnd.text = p0.subjectName
         holder.layout.setOnClickListener {
             val sendIntent = Intent(Intent.ACTION_VIEW,
-                Uri.parse("https://teams.microsoft.com/l/team/19%3a41ee98b7b3ee4b31b77623552f24b7bb%40thread.tacv2/conversations?groupId=b60babd1-af10-4929-a1d6-07e75545fb26&tenantId=2dff09ac-2b3b-4182-9953-2b548e0d0b39"))
+                Uri.parse("https://teams.microsoft.com/l/team/19%3a367f6afd8a40464f8f7487496aa13608%40thread.tacv2/conversations?groupId=31414212-3256-4ea2-998b-5ea95ec74200&tenantId=2dff09ac-2b3b-4182-9953-2b548e0d0b39"))
             if (sendIntent.resolveActivity(context.packageManager) != null) {
                 context.startActivity(sendIntent)
             }
         }
+        holder.live.isSelected = true
+        if (position == 0)
+            holder.live.isSelected = false
     }
 
     fun updateDate(item: List<Subject>) {
@@ -56,5 +59,6 @@ class AdapterSubjectMS(val context: Context, var list: List<Subject>) : Recycler
         var dayStart = view.findViewById<TextView>(R.id.tv_day_start)
         var dayEnd = view.findViewById<TextView>(R.id.tv_day_end)
         val layout = view.findViewById<ConstraintLayout>(R.id.layout_info_subject)
+        var live = view.findViewById<ImageButton>(R.id.img_live)
     }
 }

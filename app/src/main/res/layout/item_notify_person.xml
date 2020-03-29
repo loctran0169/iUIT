@@ -11,33 +11,28 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/view_date"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/black"
-        app:cardCornerRadius="24dp"
+        app:cardCornerRadius="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_time_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="13:00"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#d3d3d3"
+            android:scaleType="center" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tv_time_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="15:15"
+        android:text="29/03/2020"
+        android:textSize="8sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@id/layout_info_subject"
         app:layout_constraintEnd_toEndOf="@id/view_date"
         app:layout_constraintStart_toStartOf="@id/view_date" />
@@ -47,9 +42,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/radius_item_subject"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,10 +57,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="28dp"
             android:maxLines="1"
-            android:text="Hệ điều hành "
+            android:text="Thông báo nghỉ"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -78,52 +72,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="28dp"
             android:maxLines="1"
-            android:text="Mã lớp: IT007.K22.CNCL - VN"
+            android:text="Môn: Kiến trúc máy tính"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_name_sub" />
-
-        <TextView
-            android:id="@+id/tv_teacher_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:maxLines="1"
-            android:text="GV: Lê Hoài Trung"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_code_sub" />
-
-        <TextView
-            android:id="@+id/tv_code_msteam"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:maxLines="1"
-            android:text="Ms Teams: ed3um0t"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_teacher_name" />
-
-        <TextView
-            android:id="@+id/tv_day_start"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:maxLines="1"
-            android:text="BĐ: 09/03/20"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_code_msteam" />
 
         <TextView
             android:id="@+id/tv_day_end"
@@ -133,20 +89,11 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
             android:maxLines="1"
-            android:text="KT: 27/06/20"
+            android:text="Ngày: 27/06/2020"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_day_start" />
+            app:layout_constraintTop_toBottomOf="@id/tv_code_sub" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageButton
-        android:id="@+id/img_live"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:background="@drawable/selector_live_or_class"
-        android:elevation="2dp"
-        app:layout_constraintEnd_toEndOf="@id/layout_info_subject"
-        app:layout_constraintTop_toTopOf="@id/layout_info_subject" />
 </androidx.constraintlayout.widget.ConstraintLayout>
