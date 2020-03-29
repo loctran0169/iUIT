@@ -5,4 +5,5 @@ import android.view.View
 interface LoginListener {
     fun onBackPressed(view : View)
     fun onLoginPressed(view: View)
+    fun onForgotPassword(view: View)
 }

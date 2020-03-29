@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="avatarsize">120dp</dimen>
+    <dimen name="avatarsize">100dp</dimen>
 </resources>

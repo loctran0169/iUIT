@@ -13,37 +13,51 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="Đăng nhập"
-            android:onClick="@{listener::onLoginPressed}"
             android:id="@+id/btn_to_login"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_to_register"
+            android:background="@drawable/border_button"
+            android:onClick="@{listener::onLoginPressed}"
+            android:text="Đăng nhập"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <Button
-            android:text="Đăng ký"
-            android:onClick="@{listener::onRegisterPressed}"
             android:id="@+id/btn_to_register"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_to_forgot_password"
+            android:layout_margin="16dp"
+            android:background="@drawable/border_button_white"
+            android:onClick="@{listener::onRegisterPressed}"
+            android:text="Đăng ký"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_to_login" />
 
         <Button
-            android:text="Quên mật khẩu"
-            android:onClick="@{listener::onForgotPassword}"
             android:id="@+id/btn_to_forgot_password"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:onClick="@{listener::onForgotPassword}"
+            android:text="Quên mật khẩu"
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

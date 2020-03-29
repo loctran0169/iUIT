@@ -9,8 +9,7 @@
     <string name="lbEmail">Email</string>
     <string name="lbVerificationCode">Mã chứng thực</string>
     <string name="lbRePassword">Nhập lại mật khẩu</string>
-    <string name="stringKhoiPhucPassword">Nhập địa chỉ Email để khôi phục mật khẩu</string>
+    <string name="stringKhoiPhucPassword">(Nhập địa chỉ Email để khôi phục mật khẩu)</string>
     <string name="lbSend">Gửi</string>
     <string name="lbAccountNotExist">Tài khoản không tồn tại.</string>
-    <string name="lbRegister">Đăng ký</string>
 </resources>
