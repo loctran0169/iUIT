@@ -1,7 +1,4 @@
-package vn.edu.uit.managementforstudents.data.Model
-
-import java.sql.Time
-import java.util.*
+package vn.edu.uit.managementforstudents.data.models
 
 data class Subject(
     var id: String?,
