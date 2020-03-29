@@ -9,4 +9,6 @@ interface IntroListener {
     fun onForgotPassword(view: View)
 
     fun onRegisterPressed(view: View)
+
+    fun showGif()
 }

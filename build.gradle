@@ -8,11 +8,12 @@ buildscript {
         material_dialog_date_time_version = "3.1.1"
         material_dialog_lifecycle_version = "3.1.1"
         circel_imageviwe_version = "3.0.1"
+        glide_version = "4.10.0"
     }
     repositories {
         google()
         jcenter()
-        
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
