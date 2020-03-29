@@ -16,14 +16,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:cardCornerRadius="16dp"
+        app:layout_constraintCircleRadius="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
+            android:id="@+id/img_isRead"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#d3d3d3"
-            android:scaleType="center" />
+            android:background="#f3f3f3"
+            android:scaleType="center"
+            android:src="@drawable/selector_read_unread" />
     </androidx.cardview.widget.CardView>
 
     <TextView
