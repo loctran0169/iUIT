@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ManagementForStudents</string>
+    <string name="app_name">iUIT</string>
     <string name="lbAccount">Tài khoản</string>
     <string name="lbPassword">Mật khẩu </string>
     <string name="lbDangNhap">Đăng nhập</string>

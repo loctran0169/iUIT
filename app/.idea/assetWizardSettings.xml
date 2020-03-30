@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_add_photo" />
-                            <entry key="sourceFile" value="C:\Users\LQTPL\Desktop\add_photo.svg" />
+                            <entry key="outputName" value="ic_verify" />
+                            <entry key="sourceFile" value="C:\Users\LQTPL\Desktop\verify.svg" />
                           </map>
                         </option>
                       </PersistentState>
