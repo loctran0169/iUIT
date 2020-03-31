@@ -1,11 +1,9 @@
 package vn.edu.uit.managementforstudents.ui.fragments
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -19,10 +17,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val w = activity?.window
-            w?.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+
         val navController = Navigation.findNavController(activity!!, R.id.frmMain)
         NavigationUI.setupWithNavController(bottom_navigaion_view, navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
