@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import vn.edu.uit.managementforstudents.R
 
-class AdapterHistory : RecyclerView.Adapter<AdapterHistory.ViewHolder>() {
+class AdapterHistory(val childFragment: FragmentManager) : RecyclerView.Adapter<AdapterHistory.ViewHolder>() {
     lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterHistory.ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
@@ -34,10 +34,12 @@ class AdapterHistory : RecyclerView.Adapter<AdapterHistory.ViewHolder>() {
             holder.tvProto.text = "Class"
         }
         holder.layout.setOnClickListener {
-            val view = LayoutInflater.from(context).inflate(R.layout.item_history, null)
-            val dialog = BottomSheetDialog(context)
-            dialog.setContentView(view)
-            dialog.show()
+            //            val view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_history, null)
+//            val dialog = BottomSheetDialog(context)
+//            dialog.setContentView(view)
+//            dialog.show()
+            val base = BaseBottomSheetHistory(context)
+            base.show(childFragment, "")
         }
     }
 

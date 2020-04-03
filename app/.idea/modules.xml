@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../ManagementForStudents.iml" filepath="$PROJECT_DIR$/../ManagementForStudents.iml" group="ManagementForStudents" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="ManagementForStudents/app" />
+      <module fileurl="file://$PROJECT_DIR$/../iUIT-ManagementForStudents.iml" filepath="$PROJECT_DIR$/../iUIT-ManagementForStudents.iml" group="ManagementForStudents" />
+      <module fileurl="file://$PROJECT_DIR$/iUIT-app.iml" filepath="$PROJECT_DIR$/iUIT-app.iml" group="ManagementForStudents/app" />
     </modules>
   </component>
 </project>

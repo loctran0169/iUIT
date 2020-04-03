@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Objects;
+
 import vn.edu.uit.managementforstudents.R;
 import vn.edu.uit.managementforstudents.data.adapters.AdapterHistory;
 
@@ -31,7 +33,8 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mAdapterHistory = new AdapterHistory();
+        mAdapterHistory = new AdapterHistory(Objects.requireNonNull(getActivity())
+                                                    .getSupportFragmentManager());
         rcv = view.findViewById(R.id.rcv_history);
         rcv.setLayoutManager(new LinearLayoutManager((getContext())));
         rcv.setAdapter(mAdapterHistory);
