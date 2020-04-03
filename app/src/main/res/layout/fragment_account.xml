@@ -1,16 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tài khoản"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="vn.edu.uit.managementforstudents.ui.fragments.intro.IntroViewModel" />
+
+        <variable
+            name="listener"
+            type="vn.edu.uit.managementforstudents.ui.fragments.intro.register.RegisterListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_back"
+            android:onClick="@{listener::onBackPressed}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lbAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/lbTaiKhoan"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_back" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/img_select_image"
+            android:layout_width="@dimen/avatarsize"
+            android:layout_height="@dimen/avatarsize"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_camera"
+            app:civ_border_width="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/lbAccount" />
+
+        <TextView
+            android:id="@+id/lbName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Họ tên"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_select_image" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/btn"
+            app:layout_constraintTop_toBottomOf="@id/lbName">
+            <Switch
+                android:id="@+id/sw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               android:padding="10dp"
+                android:checked="false"
+                android:text="@string/lbDarkMode"
+                android:textColor="#000"
+                android:textSize="18sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#000" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Thông báo"
+                android:textColor="#000"
+                android:textSize="18sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#000" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Thông tin tài khoản"
+                android:textColor="#000"
+                android:textSize="18sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#000" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+              android:padding="10dp"
+                android:text="Thay đổi mật khẩu"
+                android:textColor="#000"
+                android:textSize="18sp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#000" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Cập nhật thông tin"
+                android:textColor="#000"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/border_button"
+            android:onClick="@{listener::onAcceptPressed}"
+            android:text="Đăng xuất"
+
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

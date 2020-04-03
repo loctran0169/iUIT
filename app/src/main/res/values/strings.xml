@@ -12,4 +12,6 @@
     <string name="stringKhoiPhucPassword">(Nhập địa chỉ Email để khôi phục mật khẩu)</string>
     <string name="lbSend">Gửi</string>
     <string name="lbAccountNotExist">Tài khoản không tồn tại.</string>
+    <string name="lbTaiKhoan">Tài khoản</string>
+    <string name="lbDarkMode">Chế độ tối</string>
 </resources>
