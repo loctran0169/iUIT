@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.michalsvec.singlerowcalendar.calendar.CalendarChangesObserver
 import com.michalsvec.singlerowcalendar.calendar.CalendarViewManager
 import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
@@ -14,12 +15,22 @@ import com.michalsvec.singlerowcalendar.selection.CalendarSelectionManager
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlinx.android.synthetic.main.item_day_of_week.view.*
 import vn.edu.uit.managementforstudents.R
+import vn.edu.uit.managementforstudents.SpaceItem
+import vn.edu.uit.managementforstudents.data.adapters.AdapterShedule
 import java.util.*
 
 class ScheduleFragment : Fragment() {
 
     lateinit var singleRowCalendar: SingleRowCalendar
     val dayName = listOf("T2", "T3", "T4", "T5", "T6", "T7", "CN")
+
+    private val adapterMorning: AdapterShedule by lazy {
+        AdapterShedule()
+    }
+    private val adapterAfterNoon: AdapterShedule by lazy {
+        AdapterShedule()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return LayoutInflater.from(context).inflate(R.layout.fragment_schedule, container, false)
     }
@@ -45,8 +56,8 @@ class ScheduleFragment : Fragment() {
                 isSelected: Boolean
             ) {
                 holder.itemView.tv_date_calendar_item.text = dayName[position]
-                if(position%3!=0)
-                    holder.itemView.viewHaveSub.visibility=View.GONE
+                if (position % 3 != 0)
+                    holder.itemView.viewHaveSub.visibility = View.GONE
             }
         }
         val mySelectionManager = object : CalendarSelectionManager {
@@ -69,5 +80,16 @@ class ScheduleFragment : Fragment() {
             init()
         }
         singleRowCalendar.select(0)
+
+        rcv_morning.run {
+            adapter = adapterMorning
+            layoutManager = LinearLayoutManager(this@ScheduleFragment.context)
+            addItemDecoration(SpaceItem(3))
+        }
+        rcv_afternoon.run {
+            adapter = adapterAfterNoon
+            layoutManager = LinearLayoutManager(this@ScheduleFragment.context)
+            addItemDecoration(SpaceItem(3))
+        }
     }
 }
