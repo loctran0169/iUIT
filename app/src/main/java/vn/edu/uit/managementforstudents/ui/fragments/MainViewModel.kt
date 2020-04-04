@@ -13,4 +13,5 @@ class MainViewModel : ViewModel() {
         NotifyPerson("", "", "", "", "", "", "", "", "", "", "", true),
         NotifyPerson("", "", "", "", "", "", "", "", "", "", "", true),
         NotifyPerson("", "", "", "", "", "", "", "", "", "", "", true))
+    val listName = listOf("Bộ lọc","Kiến trúc máy tính","Cộng nghệ phần mềm chuyên sâu","Đồ án 1","Đặt tả hình thức")
 }

@@ -21,7 +21,7 @@ class MainFragment : Fragment() {
 
         val navController = Navigation.findNavController(activity!!, R.id.frmMain)
         NavigationUI.setupWithNavController(bottom_navigaion_view, navController)
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             appBarLayout.setExpanded(true, true)
             when (destination.id) {
                 R.id.fragment_home -> tv_title_tab.text = "Lịch học là gì"

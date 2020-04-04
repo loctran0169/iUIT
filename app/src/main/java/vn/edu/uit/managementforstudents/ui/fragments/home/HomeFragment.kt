@@ -37,7 +37,6 @@ class HomeFragment : Fragment(), HomeListener {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val cal = Calendar.getInstance()
         tvDate.text = "Tháng ${DateUtils.getMonthNumber(calendar.time)}, ${DateUtils.getDayNumber(calendar.time)} "
         tvDay.text = DateUtils.getDayName(calendar.time)
         rcv_subject.run {

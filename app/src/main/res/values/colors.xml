@@ -8,4 +8,6 @@
     <color name="colorItemInput">#a0abc0</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
     <color name="colorEnjoyTeam">#041CB8</color>
+    <color name="item_spinner_pressed">#37a0f4</color>
+    <color name="backgroup_popup_spinner">#F2FFFFFF</color>
 </resources>

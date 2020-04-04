@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fragment_home"
-        android:icon="@android:drawable/ic_menu_compass"
+        android:icon="@drawable/ic_today"
         android:title="Home" />
     <item
         android:id="@+id/fragment_schedule"
-        android:icon="@android:drawable/ic_menu_compass"
+        android:icon="@drawable/ic_time"
         android:title="TKB" />
     <item
         android:id="@+id/fragment_history"
