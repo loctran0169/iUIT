@@ -84,12 +84,12 @@ class ScheduleFragment : Fragment() {
         rcv_morning.run {
             adapter = adapterMorning
             layoutManager = LinearLayoutManager(this@ScheduleFragment.context)
-            addItemDecoration(SpaceItem(3))
+            addItemDecoration(SpaceItem(4))
         }
         rcv_afternoon.run {
             adapter = adapterAfterNoon
             layoutManager = LinearLayoutManager(this@ScheduleFragment.context)
-            addItemDecoration(SpaceItem(3))
+            addItemDecoration(SpaceItem(4))
         }
     }
 }

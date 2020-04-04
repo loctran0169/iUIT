@@ -10,4 +10,6 @@
     <color name="colorEnjoyTeam">#041CB8</color>
     <color name="item_spinner_pressed">#37a0f4</color>
     <color name="backgroup_popup_spinner">#F2FFFFFF</color>
+    <color name="mainColor">#37a0f4</color>
+    <color name="colorTabItem">#000000</color>
 </resources>

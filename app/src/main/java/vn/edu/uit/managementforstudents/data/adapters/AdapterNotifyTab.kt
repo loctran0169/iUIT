@@ -20,6 +20,6 @@ class AdapterNotifyTab(fragmentManager: FragmentManager) : FragmentPagerAdapter(
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return if (position == 0) "Nghĩ-Bù" else "Chung"
+        return if (position == 0) "Nghĩ - Bù" else "Chung"
     }
 }
