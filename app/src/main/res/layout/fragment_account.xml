@@ -16,7 +16,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="?actionBarSize">
 
         <ImageButton
             android:id="@+id/btn_back"
@@ -72,19 +73,22 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/btn"
             app:layout_constraintTop_toBottomOf="@id/lbName">
+
             <Switch
                 android:id="@+id/sw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               android:padding="10dp"
                 android:checked="false"
+                android:padding="10dp"
                 android:text="@string/lbDarkMode"
                 android:textColor="#000"
                 android:textSize="18sp" />
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="#000" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,10 +96,12 @@
                 android:text="Thông báo"
                 android:textColor="#000"
                 android:textSize="18sp" />
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="#000" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,21 +109,25 @@
                 android:text="Thông tin tài khoản"
                 android:textColor="#000"
                 android:textSize="18sp" />
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="#000" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-              android:padding="10dp"
+                android:padding="10dp"
                 android:text="Thay đổi mật khẩu"
                 android:textColor="#000"
                 android:textSize="18sp" />
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="#000" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,6 +136,7 @@
                 android:textColor="#000"
                 android:textSize="18sp" />
         </LinearLayout>
+
         <Button
             android:id="@+id/btn"
             android:layout_width="match_parent"
