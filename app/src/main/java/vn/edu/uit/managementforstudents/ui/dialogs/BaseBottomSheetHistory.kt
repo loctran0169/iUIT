@@ -1,4 +1,4 @@
-package vn.edu.uit.managementforstudents.data.adapters
+package vn.edu.uit.managementforstudents.ui.dialogs
 
 import android.app.Dialog
 import android.content.Context

@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.MainFragment"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main"/>
     <fragment
         android:id="@+id/registerFragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.intro.register.RegisterFragment"

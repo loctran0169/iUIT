@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import vn.edu.uit.managementforstudents.R
 
 class MainFragment : Fragment() {
+    var currentId = R.id.fragment_home
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return LayoutInflater.from(activity!!).inflate(R.layout.fragment_main, container, false)
@@ -22,14 +23,15 @@ class MainFragment : Fragment() {
         val navController = Navigation.findNavController(activity!!, R.id.frmMain)
         NavigationUI.setupWithNavController(bottom_navigaion_view, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            appBarLayout.setExpanded(true, true)
+            this.appBarLayout.setExpanded(true, true)
             when (destination.id) {
                 R.id.fragment_home -> tv_title_tab.text = "Lịch học là gì"
                 R.id.fragment_schedule -> tv_title_tab.text = "Thời khóa biểu"
                 R.id.fragment_history -> tv_title_tab.text = "Lịch sử"
                 R.id.fragment_notify -> tv_title_tab.text = "Thông báo"
-                else -> tv_title_tab.text = "Tài khoản"
+                else -> this.tv_title_tab.text = "Tài khoản"
             }
+            currentId = destination.id
         }
     }
 }

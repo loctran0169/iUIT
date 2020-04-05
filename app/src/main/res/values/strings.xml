@@ -14,4 +14,9 @@
     <string name="lbAccountNotExist">Tài khoản không tồn tại.</string>
     <string name="lbTaiKhoan">Tài khoản</string>
     <string name="lbDarkMode">Chế độ tối</string>
+    <string name="lbBirthDay">Ngày sinh</string>
+    <string name="lbPhone">Số điện thoại</string>
+    <string name="lbAddressTemp">Địa chỉ tạm trú</string>
+    <string name="lbFBLink">Địa chỉ facebook</string>
+    <string name="lbSave">Lưu thông tin</string>
 </resources>

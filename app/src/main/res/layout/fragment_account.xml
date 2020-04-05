@@ -6,11 +6,11 @@
 
         <variable
             name="viewModel"
-            type="vn.edu.uit.managementforstudents.ui.fragments.intro.IntroViewModel" />
+            type="vn.edu.uit.managementforstudents.ui.fragments.account.AccountListener" />
 
         <variable
             name="listener"
-            type="vn.edu.uit.managementforstudents.ui.fragments.intro.register.RegisterListener" />
+            type="vn.edu.uit.managementforstudents.ui.fragments.account.AccountListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,52 +19,42 @@
         android:orientation="vertical"
         android:paddingBottom="?actionBarSize">
 
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/ic_back"
-            android:onClick="@{listener::onBackPressed}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/lbAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/lbTaiKhoan"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_back" />
-
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/img_select_image"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avatar"
             android:layout_width="@dimen/avatarsize"
             android:layout_height="@dimen/avatarsize"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
+            android:layout_marginTop="15dp"
             android:src="@drawable/ic_camera"
             app:civ_border_width="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/lbAccount" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/lbName"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Họ tên"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:maxWidth="200dp"
+            android:text="Lộc Supper Hero"
+            android:textColor="@android:color/black"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_select_image" />
+            app:layout_constraintEnd_toEndOf="@id/img_avatar"
+            app:layout_constraintStart_toStartOf="@id/img_avatar"
+            app:layout_constraintTop_toBottomOf="@id/img_avatar" />
+
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_pencil"
+            android:onClick="@{listener::onEditPressed}"
+            app:layout_constraintBottom_toBottomOf="@id/tvName"
+            app:layout_constraintStart_toEndOf="@id/tvName"
+            app:layout_constraintTop_toTopOf="@id/tvName" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +62,7 @@
             android:layout_margin="20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/btn"
-            app:layout_constraintTop_toBottomOf="@id/lbName">
+            app:layout_constraintTop_toBottomOf="@id/tvName">
 
             <Switch
                 android:id="@+id/sw"
@@ -145,7 +135,7 @@
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="80dp"
             android:background="@drawable/border_button"
-            android:onClick="@{listener::onAcceptPressed}"
+            android:onClick="@{listener::onLogoutPressed}"
             android:text="Đăng xuất"
 
             android:textAllCaps="false"

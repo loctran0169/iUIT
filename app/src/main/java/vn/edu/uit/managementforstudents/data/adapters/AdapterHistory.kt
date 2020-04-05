@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.edu.uit.managementforstudents.R
+import vn.edu.uit.managementforstudents.ui.dialogs.BaseBottomSheetHistory
 
 class AdapterHistory(val childFragment: FragmentManager) : RecyclerView.Adapter<AdapterHistory.ViewHolder>() {
     lateinit var context: Context
