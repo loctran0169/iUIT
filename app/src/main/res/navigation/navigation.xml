@@ -6,6 +6,7 @@
     app:startDestination="@+id/fragment_intro">
     <fragment
         android:id="@+id/fragment_intro"
+        android:label="Intro Fragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.intro.IntroFragment"
         tools:layout="@layout/fragment_intro">
         <action
@@ -41,8 +42,19 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
+        android:label="Main Fragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.MainFragment"
-        tools:layout="@layout/fragment_main"/>
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_fragment_intro"
+            app:destination="@id/fragment_intro"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_navigation"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_editAccountFragment"
+            app:destination="@id/editAccountFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.intro.register.RegisterFragment"
@@ -51,4 +63,8 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editAccountFragment"
+        android:name="vn.edu.uit.managementforstudents.ui.fragments.account_edit.EditAccountFragment"
+        tools:layout="@layout/bottom_sheet_edit_account"/>
 </navigation>

@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_phone" />
-                            <entry key="sourceFile" value="C:\Users\LQTPL\Desktop\phone.svg" />
+                            <entry key="outputName" value="ic_score" />
+                            <entry key="sourceFile" value="C:\Users\LQTPL\Desktop\score.svg" />
                           </map>
                         </option>
                       </PersistentState>

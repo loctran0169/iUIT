@@ -74,7 +74,9 @@
         <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceBottomSheetDialog</item>
     </style>
 
-    <style name="CustomShapeAppearanceBottomSheetDialog" parent="">
+    <style name="CustomShapeAppearanceBottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
+        <item name="behavior_expandedOffset">600</item>
+        <item name="behavior_peekHeight">200dp</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">16dp</item>
         <item name="cornerSizeTopLeft">16dp</item>
@@ -86,4 +88,5 @@
         <item name="colorPrimary">#000000</item>
         <item name="android:colorPrimary">#000000</item>
     </style>
+
 </resources>

@@ -19,4 +19,7 @@
     <string name="lbAddressTemp">Địa chỉ tạm trú</string>
     <string name="lbFBLink">Địa chỉ facebook</string>
     <string name="lbSave">Lưu thông tin</string>
+    <string name="lbNewPassword">Mật khẩu mới</string>
+    <string name="lbChangeNewPassword">Nhập lại mật khẩu mới</string>
+    <string name="lbChangePassword">Đổi mật khẩu</string>
 </resources>
