@@ -112,6 +112,7 @@
                     android:drawableStart="@drawable/ic_coin"
                     android:drawablePadding="10dp"
                     android:padding="10dp"
+                    android:onClick="@{listener::onFeePressed}"
                     android:text="Thông tin học phí"
                     android:textColor="#000"
                     android:textSize="18sp" />

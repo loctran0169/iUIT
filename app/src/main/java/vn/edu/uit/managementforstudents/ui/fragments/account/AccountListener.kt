@@ -7,4 +7,5 @@ interface AccountListener {
     fun onLogoutPressed(view: View)
     fun onChangePasswordPressed(view: View)
     fun onScoreBoardPressed(view :View)
+    fun onFeePressed(view: View)
 }

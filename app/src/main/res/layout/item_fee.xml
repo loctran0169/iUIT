@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/border_10dp"
+        android:elevation="2dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/tbNameTerm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Học kỳ 2 - Năm học 2019-2020"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNumberSubTerm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Số môn: 7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tbNameTerm" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Số chỉ: 24"
+            app:layout_constraintStart_toEndOf="@id/tvNumberSubTerm"
+            app:layout_constraintTop_toTopOf="@id/tvNumberSubTerm" />
+
+        <TextView
+            android:id="@+id/lbDKHP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="ĐKHP:"
+            app:layout_constraintStart_toStartOf="@id/tvNumberSubTerm"
+            app:layout_constraintTop_toBottomOf="@id/tvNumberSubTerm" />
+
+        <TextView
+            android:id="@+id/tvDetailFee"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:text="IT007(5.0), SE102(3.0), SE106(4.0), SE113(4.0), SE121(3.0), SE214(4.0), SS006(2.0)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/lbDKHP"
+            app:layout_constraintTop_toBottomOf="@id/tvNumberSubTerm" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Học phí: 15.000.000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDetailFee" />
+
+        <TextView
+            android:id="@+id/tvPaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_edittext_blue_15dp"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="4dp"
+            android:text="Đã thanh toán"
+            android:textSize="12sp"
+            android:textColor="@color/colorEnjoyTeam"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_goneMarginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/tvNoPaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_edittext_red_15dp"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="4dp"
+            android:text="Chưa thanh toán"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:textColor="#FF0000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_goneMarginEnd="10dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
