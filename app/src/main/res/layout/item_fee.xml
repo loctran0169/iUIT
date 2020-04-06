@@ -87,8 +87,8 @@
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:text="Đã thanh toán"
-            android:textSize="12sp"
             android:textColor="@color/colorEnjoyTeam"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_goneMarginEnd="10dp" />
@@ -103,9 +103,9 @@
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:text="Chưa thanh toán"
+            android:textColor="#FF0000"
             android:textSize="12sp"
             android:visibility="gone"
-            android:textColor="#FF0000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_goneMarginEnd="10dp" />

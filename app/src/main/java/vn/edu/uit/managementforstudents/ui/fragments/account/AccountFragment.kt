@@ -11,6 +11,7 @@ import vn.edu.uit.managementforstudents.databinding.FragmentAccountBinding
 import vn.edu.uit.managementforstudents.ui.MainActivity
 import vn.edu.uit.managementforstudents.ui.dialogs.DialogChangePassword
 import vn.edu.uit.managementforstudents.ui.dialogs.DialogFee
+import vn.edu.uit.managementforstudents.ui.dialogs.DialogScore
 
 class AccountFragment : Fragment(), AccountListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,7 +34,7 @@ class AccountFragment : Fragment(), AccountListener {
     }
 
     override fun onScoreBoardPressed(view: View) {
-
+        DialogScore().show(childFragmentManager,"Score")
     }
 
     override fun onFeePressed(view: View) {

@@ -14,6 +14,7 @@ class FeeFragment : Fragment() {
     private val adapterFee: AdapterFee by lazy {
         AdapterFee()
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return LayoutInflater.from(context).inflate(R.layout.fragment_recycler_view, container, false)
     }

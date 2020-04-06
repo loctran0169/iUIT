@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="1dp"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:paddingStart="5dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="5dp"
+        android:text="Điểm HK1, NH 2019-2020"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_10dp"
+        android:elevation="2dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp">
+
+        <TableLayout
+            android:id="@+id/tableScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/strok_1dp"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <TextView
+                    android:height="30dp"
+                    android:background="@drawable/strok_1dp"
+                    android:gravity="center"
+                    android:text="MANH"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:height="30dp"
+                    android:background="@drawable/strok_1dp"
+                    android:gravity="center"
+                    android:text="Môn"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:height="30dp"
+                    android:background="@drawable/strok_1dp"
+                    android:gravity="center"
+                    android:text="TC"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:height="30dp"
+                    android:background="@drawable/strok_1dp"
+                    android:gravity="center"
+                    android:text="QT"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:height="30dp"
+                    android:background="@drawable/strok_1dp"
+                    android:gravity="center"
+                    android:text="TH"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:height="30dp"
+                    android:background="@drawable/strok_1dp"
+                    android:gravity="center"
+                    android:text="GK"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:height="30dp"
+                    android:background="@drawable/strok_1dp"
+                    android:gravity="center"
+                    android:text="CK"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:height="30dp"
+                    android:background="@drawable/strok_1dp"
+                    android:gravity="center"
+                    android:text="TB"
+                    android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -35,6 +35,7 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         spinnerAdapterHistory.setDropDownViewResource(R.layout.item_sub_name_dropdown)
         spinner_history.adapter = spinnerAdapterHistory
+
         rcv_history.run {
             adapter = adapterHistory
             layoutManager = LinearLayoutManager(context)
