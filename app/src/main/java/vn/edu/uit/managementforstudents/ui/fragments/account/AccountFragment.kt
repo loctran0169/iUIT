@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.databinding.FragmentAccountBinding
 import vn.edu.uit.managementforstudents.ui.MainActivity
-import vn.edu.uit.managementforstudents.ui.dialogs.DiaLogEditAccount
 import vn.edu.uit.managementforstudents.ui.dialogs.DialogChangePassword
 
 class AccountFragment : Fragment(), AccountListener {
@@ -33,6 +32,6 @@ class AccountFragment : Fragment(), AccountListener {
     }
 
     override fun onScoreBoardPressed(view: View) {
-        val dialog = DiaLogEditAccount(context!!).show(childFragmentManager, "Edit Account")
+
     }
 }

@@ -66,5 +66,5 @@
     <fragment
         android:id="@+id/editAccountFragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.account_edit.EditAccountFragment"
-        tools:layout="@layout/bottom_sheet_edit_account"/>
+        tools:layout="@layout/fragment_account_edit"/>
 </navigation>

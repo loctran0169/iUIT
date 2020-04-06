@@ -18,7 +18,6 @@ class BaseBottomSheetHistory(context: Context) : BottomSheetDialogFragment() {
     override fun setupDialog(dialog: Dialog, style: Int) {
         val view: View = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_history, null)
         dialog.setContentView(view)
-        (view.parent as View).setBackgroundColor(Color.TRANSPARENT)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

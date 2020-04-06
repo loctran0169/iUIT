@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val asd = Navigation.findNavController(this, R.id.nav_host_fragment)
+        Navigation.findNavController(this, R.id.nav_host_fragment)
     }
 
     override fun onBackPressed() {

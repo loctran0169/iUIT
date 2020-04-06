@@ -6,6 +6,10 @@
         <variable
             name="viewModel"
             type="vn.edu.uit.managementforstudents.ui.fragments.MainViewModel" />
+
+        <variable
+            name="listener"
+            type="vn.edu.uit.managementforstudents.ui.fragments.account_edit.EditAccountListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,17 +21,41 @@
         app:behavior_peekHeight="200dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_back"
+            android:onClick="@{listener::onBackPressed}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lbEditAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Thông tin tài khoản"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btn_back"
+            app:layout_constraintStart_toEndOf="@id/btn_back"
+            app:layout_constraintTop_toTopOf="@id/btn_back" />
+
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/img_avatar_edit"
             android:layout_width="@dimen/avatarsize"
             android:layout_height="@dimen/avatarsize"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/ic_camera"
             app:civ_border_width="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/lbEditAccount" />
 
         <TextView
             android:id="@+id/tvName"
@@ -44,6 +72,18 @@
             app:layout_constraintStart_toStartOf="@id/img_avatar_edit"
             app:layout_constraintTop_toBottomOf="@id/img_avatar_edit" />
 
+        <ImageView
+            android:id="@+id/btn_edit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/ic_pencil"
+            android:elevation="3dp"
+            android:onClick="@{listener::onEditPressed}"
+            app:layout_constraintBottom_toBottomOf="@id/tvName"
+            app:layout_constraintStart_toEndOf="@id/tvName"
+            app:layout_constraintTop_toTopOf="@id/tvName" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
+                android:focusable="false"
                 app:hintTextAppearance="@style/hint_text_input">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -64,6 +105,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_birthday"
                     android:drawablePadding="16dp"
+                    android:focusable="false"
                     android:hint="@string/lbBirthDay"
                     android:inputType="datetime"
                     android:paddingStart="16dp"
@@ -150,6 +192,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/btn_accept_edit_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
@@ -157,13 +200,10 @@
                 android:layout_marginEnd="35dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/border_button"
+                android:onClick="@{listener::onAcceptPressed}"
                 android:text="@string/lbSave"
-                android:textAllCaps="false" />
-            <View
-                android:id="@+id/view_space"
-                android:minHeight="500dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textAllCaps="false"
+                android:visibility="gone" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
