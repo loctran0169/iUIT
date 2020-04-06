@@ -1,26 +1,29 @@
 package vn.edu.uit.managementforstudents.ui.dialogs
 
+import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.webkit.WebView
+import android.widget.RelativeLayout
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.bottom_sheet_history.*
 import vn.edu.uit.managementforstudents.R
 
-class BaseBottomSheetHistory(context: Context) : BottomSheetDialogFragment() {
+class BaseBottomSheetHistory : BottomSheetDialogFragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun setupDialog(dialog: Dialog, style: Int) {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_history, null)
-        dialog.setContentView(view)
+        return view
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btn_play.setOnClickListener {
+
+        }
     }
 }

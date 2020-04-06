@@ -35,11 +35,7 @@ class AdapterHistory(val childFragment: FragmentManager) : RecyclerView.Adapter<
             holder.tvProto.text = "Class"
         }
         holder.layout.setOnClickListener {
-            //            val view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_history, null)
-//            val dialog = BottomSheetDialog(context)
-//            dialog.setContentView(view)
-//            dialog.show()
-            val base = BaseBottomSheetHistory(context)
+            val base = BaseBottomSheetHistory()
             base.show(childFragment, "")
         }
     }

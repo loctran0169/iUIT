@@ -1,6 +1,8 @@
 package vn.edu.uit.managementforstudents.data.adapters
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +20,10 @@ class AdapterNotifyGeneral(val context: Context) : RecyclerView.Adapter<AdapterN
     }
 
     override fun onBindViewHolder(holder: AdapterNotifyGeneral.ViewHolder, position: Int) {
-
+        holder.itemView.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://quiznhe.com/tung-bi-chi-trich-ve-phong-cach-an-mac-bat-ngo-nhan-duoc-loi-khen-ve-gu-thoi-trang-cua-minh-607941.html?utm_source=Trungtd&utm_medium=Trungtd&utm_campaign=Vungdk&fbclid=IwAR1KRvIwM-YuKWZ39BYECL0Z0nUVR9LhLSj7m72zz3pPzYYmpobCVruNZ6E"));
+            context.startActivity(browserIntent)
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

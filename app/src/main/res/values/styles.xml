@@ -89,4 +89,9 @@
         <item name="android:colorPrimary">#000000</item>
     </style>
 
+    //dialog
+    <style name="DialogAnimation_Bottom">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom</item>
+    </style>
 </resources>

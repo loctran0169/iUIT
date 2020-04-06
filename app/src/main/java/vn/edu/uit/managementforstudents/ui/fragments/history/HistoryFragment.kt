@@ -14,7 +14,7 @@ import vn.edu.uit.managementforstudents.data.adapters.AdapterHistory
 import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 
 class HistoryFragment : Fragment() {
-    val adapterHistory: AdapterHistory by lazy {
+    private val adapterHistory: AdapterHistory by lazy {
         AdapterHistory(activity!!.supportFragmentManager)
     }
     val viewModel: MainViewModel by lazy {
@@ -23,7 +23,7 @@ class HistoryFragment : Fragment() {
             .get(MainViewModel::class.java)
     }
 
-    val spinnerAdapterHistory: ArrayAdapter<String> by lazy {
+    private val spinnerAdapterHistory: ArrayAdapter<String> by lazy {
         ArrayAdapter(activity!!, R.layout.item_sub_name, viewModel.listName.toTypedArray())
     }
 

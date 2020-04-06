@@ -16,6 +16,7 @@
         android:paddingBottom="?actionBarSize">
 
         <View
+            android:id="@+id/view_space"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/radius_25dp"

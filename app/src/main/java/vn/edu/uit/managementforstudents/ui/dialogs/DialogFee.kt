@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.fragment_fee.*
+import kotlinx.android.synthetic.main.bottom_sheet_fee.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.data.adapters.AdapterFee
 
@@ -16,7 +16,7 @@ class DialogFee : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.fragment_fee, null)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_fee, null)
         return view
     }
 
