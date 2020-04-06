@@ -53,7 +53,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment_to_editAccountFragment"
-            app:destination="@id/editAccountFragment" />
+            app:destination="@id/editAccountFragment"
+            app:enterAnim="@anim/slide_right"
+            app:exitAnim="@anim/slide_left" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"

@@ -34,8 +34,9 @@ class AdapterSubjectMS(val context: Context, var list: List<Subject>) : Recycler
 //        holder.dayStart.text = p0.subjectName
 //        holder.dayEnd.text = p0.subjectName
         holder.layout.setOnClickListener {
-            val sendIntent = Intent(Intent.ACTION_VIEW,
-                Uri.parse("https://teams.microsoft.com/l/team/19%3a367f6afd8a40464f8f7487496aa13608%40thread.tacv2/conversations?groupId=31414212-3256-4ea2-998b-5ea95ec74200&tenantId=2dff09ac-2b3b-4182-9953-2b548e0d0b39"))
+            //val sendIntent = Intent(Intent.ACTION_VIEW,
+            //     Uri.parse("https://teams.microsoft.com/l/team/19%3a367f6afd8a40464f8f7487496aa13608%40thread.tacv2/conversations?groupId=31414212-3256-4ea2-998b-5ea95ec74200&tenantId=2dff09ac-2b3b-4182-9953-2b548e0d0b39"))
+            val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://teams.microsoft.com/l/team/19%3a387635b906bb4ffe823d737f4eb24368%40thread.tacv2/conversations?groupId=56c72d02-692d-4a19-bafd-9642c96dc657&tenantId=2dff09ac-2b3b-4182-9953-2b548e0d0b39"))
             if (sendIntent.resolveActivity(context.packageManager) != null) {
                 context.startActivity(sendIntent)
             }
