@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_history.*
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.data.adapters.AdapterHistory
+import vn.edu.uit.managementforstudents.module.adapters.AdapterHistory
 import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 
 class HistoryFragment : Fragment() {

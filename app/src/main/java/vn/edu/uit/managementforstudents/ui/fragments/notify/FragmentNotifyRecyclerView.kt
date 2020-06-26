@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.data.adapters.AdapterNotifyGeneral
-import vn.edu.uit.managementforstudents.data.adapters.AdapterNotifyPerson
+import vn.edu.uit.managementforstudents.module.adapters.AdapterNotifyGeneral
+import vn.edu.uit.managementforstudents.module.adapters.AdapterNotifyPerson
 import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 
 class FragmentNotifyRecyclerView : Fragment() {

@@ -75,7 +75,7 @@
     </style>
 
     <style name="CustomShapeAppearanceBottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
-        <item name="behavior_expandedOffset">600</item>
+        <item name="behavior_expandedOffset">600dp</item>
         <item name="behavior_peekHeight">200dp</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">16dp</item>

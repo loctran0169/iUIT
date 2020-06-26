@@ -1,8 +1,8 @@
 package vn.edu.uit.managementforstudents.ui.fragments
 
 import androidx.lifecycle.ViewModel
-import vn.edu.uit.managementforstudents.data.models.NotifyPerson
-import vn.edu.uit.managementforstudents.data.models.Subject
+import vn.edu.uit.managementforstudents.module.models.NotifyPerson
+import vn.edu.uit.managementforstudents.module.models.Subject
 
 class MainViewModel : ViewModel() {
     val listSubject = listOf(Subject("", "", "", "", "", "", "", "", ""),

@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.michalsvec.singlerowcalendar.utils.DateUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.data.adapters.AdapterSubjectMS
+import vn.edu.uit.managementforstudents.module.adapters.AdapterSubjectMS
 import vn.edu.uit.managementforstudents.databinding.FragmentHomeBinding
 import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 import java.util.*

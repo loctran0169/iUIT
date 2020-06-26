@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlinx.android.synthetic.main.item_day_of_week.view.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.SpaceItem
-import vn.edu.uit.managementforstudents.data.adapters.AdapterShedule
+import vn.edu.uit.managementforstudents.module.adapters.AdapterShedule
 import java.util.*
 
 class ScheduleFragment : Fragment() {

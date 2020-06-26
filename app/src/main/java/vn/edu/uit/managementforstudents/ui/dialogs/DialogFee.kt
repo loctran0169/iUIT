@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_fee.*
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.data.adapters.AdapterFee
+import vn.edu.uit.managementforstudents.module.adapters.AdapterFee
 
 class DialogFee : BottomSheetDialogFragment() {
     private val adapterFee: AdapterFee by lazy {

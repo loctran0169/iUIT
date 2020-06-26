@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_notify.*
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.data.adapters.AdapterNotifyTab
+import vn.edu.uit.managementforstudents.module.adapters.AdapterNotifyTab
 import vn.edu.uit.managementforstudents.databinding.FragmentNotifyBinding
 
 class NotifyFragment : Fragment() {

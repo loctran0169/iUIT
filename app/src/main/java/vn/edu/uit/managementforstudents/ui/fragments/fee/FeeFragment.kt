@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.data.adapters.AdapterFee
+import vn.edu.uit.managementforstudents.module.adapters.AdapterFee
 
 class FeeFragment : Fragment() {
     private val adapterFee: AdapterFee by lazy {
