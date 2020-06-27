@@ -12,7 +12,7 @@ import vn.edu.uit.managementforstudents.module.adapters.AdapterFee
 
 class FeeFragment : Fragment() {
     private val adapterFee: AdapterFee by lazy {
-        AdapterFee()
+        AdapterFee(mutableListOf())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

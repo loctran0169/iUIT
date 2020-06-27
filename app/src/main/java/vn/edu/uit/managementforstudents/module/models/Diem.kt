@@ -3,18 +3,21 @@ package vn.edu.uit.managementforstudents.module.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ScoreTerm(
+data class Diem(
     @Expose
-    @SerializedName("idTerm")
-    var idTerm : Int?,
+    @SerializedName("maBangDiem")
+    var maBangDiem : Int?,
     @Expose
-    @SerializedName("nameTerm")
-    var nameTerm : String?,
+    @SerializedName("maSinhVien")
+    var maSinhVien : Int?,
+    @Expose
+    @SerializedName("tenHocKy")
+    var tenHocKy : String?,
     @SerializedName("list")
-    var scores : List<Score>
+    var diem : List<DiemMonHoc>
 )
 
-data class Score(
+data class DiemMonHoc(
     @Expose
     @SerializedName("MaMH")
     val MaMH: String?,

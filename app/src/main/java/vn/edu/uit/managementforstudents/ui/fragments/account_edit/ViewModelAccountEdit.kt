@@ -1,30 +1,29 @@
-package vn.edu.uit.managementforstudents.ui.dialogs.score
+package vn.edu.uit.managementforstudents.ui.fragments.account_edit
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-
-import vn.edu.uit.managementforstudents.module.models.ScoreTerm
+import vn.edu.uit.managementforstudents.module.models.ThongTinSinhVien
 import vn.edu.uit.managementforstudents.module.networks.ApiManager
 
-class ViewModelScore  : ViewModel(){
+class ViewModelAccountEdit  : ViewModel(){
     private val compo by lazy { CompositeDisposable() }
     private val apiManager: ApiManager by lazy { ApiManager() }
-    val loadingScore = MutableLiveData<List<ScoreTerm>>().apply { value = mutableListOf() }
+    val loadingThongTin = MutableLiveData<ThongTinSinhVien>().apply { value = null }
 
     init {
-        loadListScore()
+        loadThongTinSinhVien()
     }
 
-    private fun loadListScore() {
+    private fun loadThongTinSinhVien() {
         compo.add(
-            apiManager.getScoreBoard(17520700)
+            apiManager.getThongTinSinhVien(17520700)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    loadingScore.value = it
+                    loadingThongTin.value = it
                 }, {
 
                 })

@@ -1,13 +1,17 @@
 package vn.edu.uit.managementforstudents.module.networks
 
 import io.reactivex.Single
-import okhttp3.ResponseBody
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import vn.edu.uit.managementforstudents.module.models.ScoreTerm
+import vn.edu.uit.managementforstudents.module.models.Diem
+import vn.edu.uit.managementforstudents.module.models.HocPhi
+import vn.edu.uit.managementforstudents.module.models.ThongTinSinhVien
+import java.net.SocketTimeoutException
+import java.util.concurrent.TimeUnit
 
 class ApiManager {
 
@@ -18,6 +22,17 @@ class ApiManager {
     companion object {
 
         private var sRestFull: Retrofit? = null
+        private var sOkHttpClient: OkHttpClient? = null
+        fun getOkHttpClient(): OkHttpClient? {
+            if (sOkHttpClient == null) {
+                sOkHttpClient = OkHttpClient.Builder()
+                    .readTimeout(8,TimeUnit.SECONDS)
+                    .connectTimeout(8,TimeUnit.SECONDS)
+                    .build()
+            }
+            return sOkHttpClient
+        }
+        private var client = OkHttpClient()
 
         fun getHelperRestFull(): Retrofit? {
             if (sRestFull == null) {
@@ -25,6 +40,7 @@ class ApiManager {
                     .Builder()
                     .baseUrl("https://run.mocky.io/v3/")
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(getOkHttpClient())
                     .build()
             }
             return sRestFull
@@ -35,6 +51,7 @@ class ApiManager {
         return Single.create {
             call.enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
+                    println("### resp ${response.isSuccessful} ${response.code()}")
                     try {
                         it.onSuccess(response.body()!!)
                     } catch (ex: Exception) {
@@ -43,8 +60,11 @@ class ApiManager {
                 }
 
                 override fun onFailure(p0: Call<T>, response: Throwable) {
+                    if(response is SocketTimeoutException)
+                        println("### fail ${response.message}")
                     it.onError(response)
                 }
+
             })
         }
     }
@@ -66,7 +86,16 @@ class ApiManager {
             })
         }
     }
-    fun getScoreBoard(_id : Int): Single<List<ScoreTerm>> {
-        return buildRequest(_apiRestFull.getScoreBoard(_id))
+
+    fun getScoreBoard(_id : Int): Single<List<Diem>> {
+        return buildRequest(_apiRestFull.getBangDiem(_id))
+    }
+
+    fun getHocPhi(_id : Int): Single<List<HocPhi>> {
+        return buildRequest(_apiRestFull.getHocPhi(_id))
+    }
+
+    fun getThongTinSinhVien(_id : Int): Single<ThongTinSinhVien> {
+        return buildRequest(_apiRestFull.getThongTinSinhVien(_id))
     }
 }

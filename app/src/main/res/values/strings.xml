@@ -22,4 +22,9 @@
     <string name="lbNewPassword">Mật khẩu mới</string>
     <string name="lbChangeNewPassword">Nhập lại mật khẩu mới</string>
     <string name="lbChangePassword">Đổi mật khẩu</string>
+    <string name="lbKhoa">Khoa</string>
+    <string name="lbClass">Lớp</string>
+    <string name="lbStudentId">Mã số sinh viên</string>
+    <string name="lbGender">Giới tính</string>
+    <string name="lbNganh">Ngành</string>
 </resources>

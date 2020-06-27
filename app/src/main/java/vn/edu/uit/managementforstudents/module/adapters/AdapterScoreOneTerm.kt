@@ -9,11 +9,10 @@ import android.widget.TableRow
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.module.models.Score
-import vn.edu.uit.managementforstudents.module.models.ScoreTerm
-import vn.edu.uit.managementforstudents.module.models.SubjectScore
+import vn.edu.uit.managementforstudents.module.models.DiemMonHoc
+import vn.edu.uit.managementforstudents.module.models.Diem
 
-class AdapterScoreOneTerm(val context: Context, var list : List<ScoreTerm>) : RecyclerView.Adapter<AdapterScoreOneTerm.ViewHolder>() {
+class AdapterScoreOneTerm(val context: Context, var list : List<Diem>) : RecyclerView.Adapter<AdapterScoreOneTerm.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.item_score_term, parent, false)
@@ -24,14 +23,15 @@ class AdapterScoreOneTerm(val context: Context, var list : List<ScoreTerm>) : Re
         return list.size
     }
 
-    fun updateData(items : List<ScoreTerm>){
+    fun updateData(items : List<Diem>){
         list = items
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var p0 = list[position]
-        p0.scores.forEach {
+        holder.tenHocKy.text=p0.tenHocKy
+        p0.diem.forEach {
             val dataRow = RowData()
             dataRow.setData(it)
             holder.table.addView(dataRow.getRow())
@@ -40,6 +40,7 @@ class AdapterScoreOneTerm(val context: Context, var list : List<ScoreTerm>) : Re
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val table = view.findViewById<TableLayout>(R.id.tableScore)
+        val tenHocKy = view.findViewById<TextView>(R.id.tvScore)
     }
 
     inner class RowData() {
@@ -64,7 +65,7 @@ class AdapterScoreOneTerm(val context: Context, var list : List<ScoreTerm>) : Re
             tb = rowHead.findViewById(R.id.tvTB)
         }
 
-        fun setData(score: Score) {
+        fun setData(score: DiemMonHoc) {
             mamh.text = score.MaMH
             tenmh.text = score.TenMH
             tc.text = score.TC

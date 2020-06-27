@@ -11,9 +11,9 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.module.models.Subject
+import vn.edu.uit.managementforstudents.module.models.MonHoc
 
-class AdapterSubjectMS(val context: Context, var list: List<Subject>) : RecyclerView.Adapter<AdapterSubjectMS.ViewHolder>() {
+class AdapterSubjectMS(val context: Context, var list: List<MonHoc>) : RecyclerView.Adapter<AdapterSubjectMS.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.item_calendar_day, parent, false)
@@ -46,7 +46,7 @@ class AdapterSubjectMS(val context: Context, var list: List<Subject>) : Recycler
             holder.live.isSelected = false
     }
 
-    fun updateDate(item: List<Subject>) {
+    fun updateDate(item: List<MonHoc>) {
         list = item
         notifyDataSetChanged()
     }

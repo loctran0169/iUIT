@@ -10,7 +10,7 @@ import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.databinding.FragmentAccountBinding
 import vn.edu.uit.managementforstudents.ui.MainActivity
 import vn.edu.uit.managementforstudents.ui.dialogs.DialogChangePassword
-import vn.edu.uit.managementforstudents.ui.dialogs.DialogFee
+import vn.edu.uit.managementforstudents.ui.dialogs.fee.DialogFee
 import vn.edu.uit.managementforstudents.ui.dialogs.score.DialogScore
 
 class AccountFragment : Fragment(), AccountListener {
@@ -30,7 +30,7 @@ class AccountFragment : Fragment(), AccountListener {
     }
 
     override fun onChangePasswordPressed(view: View) {
-        DialogChangePassword(context!!).show(childFragmentManager, "change Password")
+        DialogChangePassword(requireContext()).show(childFragmentManager, "change Password")
     }
 
     override fun onScoreBoardPressed(view: View) {

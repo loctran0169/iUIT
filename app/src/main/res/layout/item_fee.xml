@@ -20,7 +20,7 @@
         android:paddingBottom="5dp">
 
         <TextView
-            android:id="@+id/tbNameTerm"
+            android:id="@+id/tvNameTerm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Học kỳ 2 - Năm học 2019-2020"
@@ -36,9 +36,10 @@
             android:padding="5dp"
             android:text="Số môn: 7"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tbNameTerm" />
+            app:layout_constraintTop_toBottomOf="@id/tvNameTerm" />
 
         <TextView
+            android:id="@+id/tvNumberTC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -70,6 +71,7 @@
 
 
         <TextView
+            android:id="@+id/tvHocPhi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
