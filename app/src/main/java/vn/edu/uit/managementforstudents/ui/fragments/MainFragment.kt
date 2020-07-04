@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -18,20 +19,26 @@ class MainFragment : Fragment() {
 
     var backTime = 0L
     val sharedPref: SharedPreferences.Editor by lazy {
-        context!!.getSharedPreferences("iUIT", Context.MODE_PRIVATE).edit()
+        requireContext().getSharedPreferences("iUIT", Context.MODE_PRIVATE).edit()
+    }
+
+    val viewModelMain: MainViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this@MainFragment
+        binding.viewModel = viewModelMain
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = Navigation.findNavController(activity!!, R.id.frmMain)
+
+        val navController = Navigation.findNavController(requireActivity(), R.id.frmMain)
         NavigationUI.setupWithNavController(bottom_navigaion_view, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             sharedPref.putBoolean("MAIN", false)

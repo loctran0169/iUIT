@@ -3,9 +3,7 @@ package vn.edu.uit.managementforstudents.module.networks
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
-import vn.edu.uit.managementforstudents.module.models.Diem
-import vn.edu.uit.managementforstudents.module.models.HocPhi
-import vn.edu.uit.managementforstudents.module.models.ThongTinSinhVien
+import vn.edu.uit.managementforstudents.module.models.*
 
 interface ApiHelper {
 
@@ -23,4 +21,15 @@ interface ApiHelper {
     fun getThongTinSinhVien(
         @Query("maSinhVien") studentId: Int
     ): Call<ThongTinSinhVien>
+
+    @GET("f8d5a86d-87da-45e4-bbec-c1daa09f1d9d")
+    fun getDanhSachMonHoc(
+        @Query("maSinhVien") studentId: Int
+    ): Call<List<MonHoc>>
+
+    @GET("1b378783-220e-4ada-be9b-82f94ad7b877")
+    fun getLichSuHocTap(
+        @Query("maSinhVien") studentId: Int,
+        @Query("maMonHoc") monHoc: Int?
+    ): Call<List<LichSu>>
 }

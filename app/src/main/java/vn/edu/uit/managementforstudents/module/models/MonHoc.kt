@@ -12,4 +12,6 @@ data class MonHoc(
     var ngayBatDau: String?,
     var ngayKetThuc: String?,
     var TC : Int?=0
-)
+){
+    constructor(_maMonHoc: String?,_tenMonHoc: String?) : this(_maMonHoc,"",_tenMonHoc,"","","","","","","",0)
+}
