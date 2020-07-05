@@ -10,7 +10,7 @@
         android:id="@+id/tvNumberSchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
         android:text="1"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -18,13 +18,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/layoutTime"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/tvNumberSchedule">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserratmedium"
+            android:gravity="center|bottom"
+            android:text="7:40"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserratmedium"
+            android:gravity="center|top"
+            android:text="9:45"
+            android:textSize="12sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tvNameSchedule"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:drawableStart="@drawable/ic_user"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
         android:maxLines="1"
@@ -35,6 +63,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvNumberSchedule"
+        app:layout_constraintStart_toEndOf="@id/layoutTime"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

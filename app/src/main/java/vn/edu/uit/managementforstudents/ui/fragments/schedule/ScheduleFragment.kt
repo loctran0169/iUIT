@@ -36,6 +36,7 @@ class ScheduleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewPager_schedule.adapter = adapterViewPager
+        viewPager_schedule.offscreenPageLimit = 7
         viewPager_schedule.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

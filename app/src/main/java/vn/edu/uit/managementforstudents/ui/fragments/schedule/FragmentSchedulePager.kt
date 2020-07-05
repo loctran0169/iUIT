@@ -9,15 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_schedule_pager.*
-import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.SpaceItem
+import vn.edu.uit.managementforstudents.databinding.FragmentSchedulePagerBinding
 import vn.edu.uit.managementforstudents.module.adapters.AdapterShedule
 import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 
-class FragmentSchedulePager(val day: Int) : Fragment() {
+class FragmentSchedulePager(val day: String) : Fragment() {
 
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     private val adapterMorning: AdapterShedule by lazy {
@@ -28,39 +28,13 @@ class FragmentSchedulePager(val day: Int) : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(context).inflate(R.layout.fragment_schedule_pager, container, false)
+        val binding = FragmentSchedulePagerBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this@FragmentSchedulePager
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        viewModel.listSchedule.observe(this.viewLifecycleOwner, Observer {
-//            println("### $it")
-//        })
-
-        when (day) {
-            0 -> {
-
-            }
-            1 -> {
-
-            }
-            2 -> {
-
-            }
-            3 -> {
-
-            }
-            4 -> {
-
-            }
-            5 -> {
-
-            }
-            6 -> {
-
-            }
-        }
         rcv_morning.run {
             adapter = adapterMorning
             layoutManager = LinearLayoutManager(this@FragmentSchedulePager.context)
@@ -71,5 +45,22 @@ class FragmentSchedulePager(val day: Int) : Fragment() {
             layoutManager = LinearLayoutManager(this@FragmentSchedulePager.context)
             addItemDecoration(SpaceItem(4))
         }
+        viewModel.listSchedule.observe(this.viewLifecycleOwner, Observer { list ->
+            val data = list.find { it.dayName == day }
+            data?.mocHoc?.filter { it.isMorning == true }?.let {
+                adapterMorning.updateData(it)
+                if (it.isEmpty())
+                    tvEmptyMorning.visibility = View.GONE
+                else
+                    tvEmptyMorning.visibility = View.VISIBLE
+            }
+            data?.mocHoc?.filter { it.isMorning == false }?.let {
+                adapterAfterNoon.updateData(it)
+                if (it.isEmpty())
+                    tvEmptyEvening.visibility = View.GONE
+                else
+                    tvEmptyEvening.visibility = View.VISIBLE
+            }
+        })
     }
 }

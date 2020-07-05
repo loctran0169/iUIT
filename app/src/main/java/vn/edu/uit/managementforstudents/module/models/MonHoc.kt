@@ -16,7 +16,7 @@ data class ThoiKhoaBieu(
     var maHocKy: Int?,
     @Expose
     @SerializedName("dayName")
-    var dayName: Boolean?,
+    var dayName: String?,
     @Expose
     @SerializedName("monHoc")
     var mocHoc: List<MonHoc>
