@@ -99,7 +99,7 @@ class ApiManager {
 
     fun getNotifyPerson(_id:Int): Single<List<NotifyPerson>> {
         return buildRequest(_apiRestFull.getNotifyPerson(_id))
-
+    }
     fun getDanhSachMonHoc(_id : Int): Single<List<MonHoc>> {
         return buildRequest(_apiRestFull.getDanhSachMonHoc(_id))
     }
