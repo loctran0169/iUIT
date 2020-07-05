@@ -19,27 +19,27 @@ class ViewModelHome: ViewModel(){
     val loadMonHoc = MutableLiveData<List<MonHoc>>().apply { value = mutableListOf() }
 
     init {
-        loadHome()
+       // loadHome()
     }
 
-    fun loadHome() {
-        compo.add(
-            apiManager.getLichHoc(calendar.get(Calendar.DAY_OF_WEEK))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-
-                    var list = ArrayList<MonHoc>()
-                    it.forEach{
-//                        if(it.thu==calendar.get(Calendar.DAY_OF_WEEK))
-                        if(it.thu==3)
-                            list.add(it)
-                    }
-                    loadMonHoc.value=list
-
-                }, {
-
-                })
-        )
-    }
+//    fun loadHome() {
+//        compo.add(
+//            apiManager.getLichHoc(calendar.get(Calendar.DAY_OF_WEEK))
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe({
+//
+//                    var list = ArrayList<MonHoc>()
+//                    it.forEach{
+////                        if(it.thu==calendar.get(Calendar.DAY_OF_WEEK))
+//                        if(it.thu==3)
+//                            list.add(it)
+//                    }
+//                    loadMonHoc.value=list
+//
+//                }, {
+//
+//                })
+//        )
+//    }
 }

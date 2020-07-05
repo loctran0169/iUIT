@@ -55,12 +55,12 @@ class HomeFragment : Fragment(), HomeListener {
             adapter = adapterSubject
             layoutManager = LinearLayoutManager(this@HomeFragment.context)
         }
-        viewModel.loadMonHoc.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            if (!it.isNullOrEmpty()) {
-                adapterSubject.updateDate(it)
-                progressBarHome.visibility=View.GONE
-            }
-        })
+//      viewModelMain.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+//            if (!it.isNullOrEmpty()) {
+//                adapterSubject.updateDate(it)
+//                progressBarHome.visibility=View.GONE
+//            }
+//        })
         view_space.setOnClickListener {
             val alert = AlertDialog.Builder(requireActivity())
             val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_checkin, null)
@@ -97,7 +97,7 @@ class HomeFragment : Fragment(), HomeListener {
         }
     }
     override fun onResume() {
-        viewModel.loadHome()
+       // viewModel.loadHome()
         super.onResume()
     }
     fun hideKeyboard(dialog: AlertDialog) {

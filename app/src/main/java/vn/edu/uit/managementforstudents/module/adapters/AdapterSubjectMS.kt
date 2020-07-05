@@ -31,7 +31,7 @@ class AdapterSubjectMS(val context: Context, var list: List<MonHoc>) : RecyclerV
         if (p0.msTeamCode.equals("")|| p0.msTeamCode.isNullOrEmpty() )
         {
             holder.live.isSelected = true
-            holder.teamCode.text ="Phòng học: "+ p0.phongHoc
+            holder.teamCode.text ="Phòng học: "+ p0.tenPhong
         }else{
             holder.live.isSelected = false
             holder.teamCode.text = "Ms Teams: "+p0.msTeamCode
