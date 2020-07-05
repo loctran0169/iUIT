@@ -104,4 +104,8 @@ class ApiManager {
     fun getLichSuHocTap(_id : Int, _maMonHoc: Int?): Single<List<LichSu>> {
         return buildRequest(_apiRestFull.getLichSuHocTap(_id,_maMonHoc))
     }
+
+    fun getSchedule(_id : Int, _maHocKy: Int?): Single<List<ThoiKhoaBieu>> {
+        return buildRequest(_apiRestFull.getSchedule(_id,_maHocKy))
+    }
 }

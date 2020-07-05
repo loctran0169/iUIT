@@ -5,19 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_schedule_pager.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.SpaceItem
 import vn.edu.uit.managementforstudents.module.adapters.AdapterShedule
+import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 
 class FragmentSchedulePager(val day: Int) : Fragment() {
 
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+    }
+
     private val adapterMorning: AdapterShedule by lazy {
-        AdapterShedule()
+        AdapterShedule(mutableListOf())
     }
     private val adapterAfterNoon: AdapterShedule by lazy {
-        AdapterShedule()
+        AdapterShedule(mutableListOf())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -26,6 +33,10 @@ class FragmentSchedulePager(val day: Int) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        viewModel.listSchedule.observe(this.viewLifecycleOwner, Observer {
+//            println("### $it")
+//        })
 
         when (day) {
             0 -> {
@@ -49,7 +60,6 @@ class FragmentSchedulePager(val day: Int) : Fragment() {
             6 -> {
 
             }
-
         }
         rcv_morning.run {
             adapter = adapterMorning

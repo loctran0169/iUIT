@@ -32,4 +32,10 @@ interface ApiHelper {
         @Query("maSinhVien") studentId: Int,
         @Query("maMonHoc") monHoc: Int?
     ): Call<List<LichSu>>
+
+    @GET("bcca0be1-9596-432d-bd6f-aa9f1ac1698b")
+    fun getSchedule(
+        @Query("maSinhVien") studentId: Int,
+        @Query("maHocKy") monHoc: Int?
+    ): Call<List<ThoiKhoaBieu>>
 }
