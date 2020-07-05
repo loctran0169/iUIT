@@ -96,10 +96,19 @@ class ApiManager {
     fun getThongTinSinhVien(_id : Int): Single<ThongTinSinhVien> {
         return buildRequest(_apiRestFull.getThongTinSinhVien(_id))
     }
-    fun getLichHoc(_thu:Int): Single<List<MonHoc>> {
-        return buildRequest(_apiRestFull.getLichHoc(_thu))
-    }
+
     fun getNotifyPerson(_id:Int): Single<List<NotifyPerson>> {
         return buildRequest(_apiRestFull.getNotifyPerson(_id))
+
+    fun getDanhSachMonHoc(_id : Int): Single<List<MonHoc>> {
+        return buildRequest(_apiRestFull.getDanhSachMonHoc(_id))
+    }
+
+    fun getLichSuHocTap(_id : Int, _maMonHoc: Int?): Single<List<LichSu>> {
+        return buildRequest(_apiRestFull.getLichSuHocTap(_id,_maMonHoc))
+    }
+
+    fun getSchedule(_id : Int, _maHocKy: Int?): Single<List<ThoiKhoaBieu>> {
+        return buildRequest(_apiRestFull.getSchedule(_id,_maHocKy))
     }
 }

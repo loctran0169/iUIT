@@ -57,10 +57,10 @@ class DialogChangePassword() : BottomSheetDialogFragment(), DialogChangePassword
 
     override fun onConfrimPressed(view: View) {
         if (onProcess) return
-        onProcess = true
         if (tvOldPassword.isValidPassWord() && tvNewPassword.isValidPassWord() && tvNewPasswordConfirm.isValidPassWord()) {
             if (comparePassword(tvNewPassword, tvNewPasswordConfirm)) {
                 progressChangePassword.visibility = View.VISIBLE
+                onProcess = true
                 this@DialogChangePassword.isCancelable = false
                 object : CountDownTimer(2000, 1250) {
                     override fun onFinish() {

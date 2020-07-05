@@ -7,23 +7,32 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import vn.edu.uit.managementforstudents.R
+import vn.edu.uit.managementforstudents.module.models.MonHoc
 
-class AdapterShedule : RecyclerView.Adapter<AdapterShedule.ViewHolder>(){
+class AdapterShedule(var list: List<MonHoc>) : RecyclerView.Adapter<AdapterShedule.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterShedule.ViewHolder {
-        val view: View= LayoutInflater.from(parent.context).inflate(R.layout.item_schedule,parent,false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_schedule, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return list.size
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AdapterShedule.ViewHolder, position: Int) {
-        holder.number.text="${position+1}"
+        val p0 = list[position]
+        holder.number.text = "${position + 1}"
+        holder.name.text = p0.tenMonHoc
     }
 
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+    fun updateData(items: List<MonHoc>) {
+        list = items
+        notifyDataSetChanged()
+    }
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val number = view.findViewById<TextView>(R.id.tvNumberSchedule)
+        val name = view.findViewById<TextView>(R.id.tvNameSchedule)
     }
 }

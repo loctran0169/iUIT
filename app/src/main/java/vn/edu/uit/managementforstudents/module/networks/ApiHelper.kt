@@ -22,21 +22,25 @@ interface ApiHelper {
         @Query("maSinhVien") studentId: Int
     ): Call<ThongTinSinhVien>
 
-    @GET("d9a7d264-cb81-4bc4-9f81-91762c9017a1")
-    fun getLichHoc(
-        @Query("thu") thu: Int
-    ):Call<List<MonHoc>>
+    @GET("f8d5a86d-87da-45e4-bbec-c1daa09f1d9d")
+    fun getDanhSachMonHoc(
+        @Query("maSinhVien") studentId: Int
+    ): Call<List<MonHoc>>
+
+    @GET("1b378783-220e-4ada-be9b-82f94ad7b877")
+    fun getLichSuHocTap(
+        @Query("maSinhVien") studentId: Int,
+        @Query("maMonHoc") monHoc: Int?
+    ): Call<List<LichSu>>
+
+    @GET("bcca0be1-9596-432d-bd6f-aa9f1ac1698b")
+    fun getSchedule(
+        @Query("maSinhVien") studentId: Int,
+        @Query("maHocKy") monHoc: Int?
+    ): Call<List<ThoiKhoaBieu>>
 
     @GET("b05e04a3-2507-4c9c-bae6-8fe73daab6ec")
     fun getNotifyPerson(
         @Query("maSinhVien") maSinhVien: Int
     ):Call<List<NotifyPerson>>
-
-
-    // lịch học các môn
-    //55eb8c93-0d8f-4d61-bf85-f3ecdd8e195d
-
-
-    // list môn của sinh viên
-    //https://run.mocky.io/v3/e9567e99-0e0b-4006-9740-2a724eeb1a60
 }

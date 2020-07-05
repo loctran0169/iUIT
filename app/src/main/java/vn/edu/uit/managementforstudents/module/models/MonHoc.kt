@@ -4,45 +4,38 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
-data class MonHoc(
+data class ThoiKhoaBieu(
     @Expose
-    @SerializedName("maMonHoc")
-    val maMonHoc: String?,
+    @SerializedName("maTKB")
+    var maTKB: Int?,
     @Expose
-    @SerializedName("maLopHoc")
-    val maLopHoc: String?,
+    @SerializedName("maSinhVien")
+    var maSinhVien: Int?,
     @Expose
-    @SerializedName("tenMonHoc")
-    val tenMonHoc: String?,
+    @SerializedName("maHocKy")
+    var maHocKy: Int?,
     @Expose
-    @SerializedName("tenGiaoVien")
-    val tenGiaoVien: String?,
+    @SerializedName("dayName")
+    var dayName: Boolean?,
     @Expose
-    @SerializedName("msTeamCode")
-    val msTeamCode: String?,
-    @Expose
-    @SerializedName("msTeamDeepLink")
-    val msTeamDeepLink: String?,
-    @Expose
-    @SerializedName("phongHoc")
-    val phongHoc: String?,
-    @Expose
-    @SerializedName("thu")
-    val thu: Int?,
-    @Expose
-    @SerializedName("thoiGianBatDau")
-    val thoiGianBatDau: String?,
-    @Expose
-    @SerializedName("thoiGianKetThuc")
-    val thoiGianKetThuc: String?,
-    @Expose
-    @SerializedName("ngayBatDau")
-    val ngayBatDau: String?,
-    @Expose
-    @SerializedName("ngayKetThuc")
-    val ngayKetThuc: String?,
-    @Expose
-    @SerializedName("TC")
-    val TC: Int?
-
+    @SerializedName("monHoc")
+    var mocHoc: List<MonHoc>
 )
+
+data class MonHoc(
+    var maMonHoc: String?,
+    var maLopHoc: String?,
+    var tenMonHoc: String?,
+    var tenGiaoVien: String?,
+    var tenPhong : String?,
+    var isMorning : Boolean?,
+    var msTeamCode: String?,
+    val msTeamDeepLink: String?,
+    var thoiGianBatDau: String?,
+    var thoiGianKetThuc: String?,
+    var ngayBatDau: String?,
+    var ngayKetThuc: String?,
+    var TC: Int? = 0
+) {
+    constructor(_maMonHoc: String?, _tenMonHoc: String?) : this(_maMonHoc, "", _tenMonHoc, "", "",true,"", "", "", "", "", "", 0)
+}

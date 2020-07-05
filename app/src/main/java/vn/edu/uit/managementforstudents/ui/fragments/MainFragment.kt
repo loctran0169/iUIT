@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -21,10 +22,15 @@ class MainFragment : Fragment() {
         requireContext().getSharedPreferences("iUIT", Context.MODE_PRIVATE).edit()
     }
 
+    val viewModelMain: MainViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this@MainFragment
+        binding.viewModel = viewModelMain
         return binding.root
     }
 

@@ -6,16 +6,21 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import vn.edu.uit.managementforstudents.R
+import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     var backTime = 0L
     val sharedPref: SharedPreferences by lazy {
         getSharedPreferences("iUIT", Context.MODE_PRIVATE)
+    }
+    private val viewModelMain: MainViewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
 import com.michalsvec.singlerowcalendar.calendar.CalendarChangesObserver
 import com.michalsvec.singlerowcalendar.calendar.CalendarViewManager
 import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
@@ -15,20 +15,17 @@ import com.michalsvec.singlerowcalendar.selection.CalendarSelectionManager
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlinx.android.synthetic.main.item_day_of_week.view.*
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.SpaceItem
-import vn.edu.uit.managementforstudents.module.adapters.AdapterShedule
+import vn.edu.uit.managementforstudents.module.adapters.AdapterPagerSchedule
 import java.util.*
 
 class ScheduleFragment : Fragment() {
 
     lateinit var singleRowCalendar: SingleRowCalendar
+    var posSelected = 0
     val dayName = listOf("T2", "T3", "T4", "T5", "T6", "T7", "CN")
 
-    private val adapterMorning: AdapterShedule by lazy {
-        AdapterShedule()
-    }
-    private val adapterAfterNoon: AdapterShedule by lazy {
-        AdapterShedule()
+    val adapterViewPager: AdapterPagerSchedule by lazy {
+        AdapterPagerSchedule(childFragmentManager)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,6 +34,25 @@ class ScheduleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewPager_schedule.adapter = adapterViewPager
+        viewPager_schedule.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                if (posSelected != position) {
+                    posSelected = position
+                    singleRowCalendar.scrollToPosition(position)
+                    singleRowCalendar.select(position)
+                }
+            }
+
+        })
+
         val myCalendarViewManager = object : CalendarViewManager {
             override fun setCalendarViewResourceId(
                 position: Int,
@@ -69,8 +85,13 @@ class ScheduleFragment : Fragment() {
         val myCalendarChangesObserver = object : CalendarChangesObserver {
             @SuppressLint("SetTextI18n")
             override fun whenSelectionChanged(isSelected: Boolean, position: Int, date: Date) {
-                super.whenSelectionChanged(isSelected, position, date)
+                if (!isSelected) return
+                if (posSelected != position) {
+                    posSelected = position
+                    viewPager_schedule.currentItem = position
+                }
             }
+
         }
         singleRowCalendar = main_single_row_calendar.apply {
             calendarViewManager = myCalendarViewManager
@@ -81,15 +102,5 @@ class ScheduleFragment : Fragment() {
         }
         singleRowCalendar.select(0)
 
-        rcv_morning.run {
-            adapter = adapterMorning
-            layoutManager = LinearLayoutManager(this@ScheduleFragment.context)
-            addItemDecoration(SpaceItem(4))
-        }
-        rcv_afternoon.run {
-            adapter = adapterAfterNoon
-            layoutManager = LinearLayoutManager(this@ScheduleFragment.context)
-            addItemDecoration(SpaceItem(4))
-        }
     }
 }

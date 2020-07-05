@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,13 +32,11 @@ import java.util.*
 class HomeFragment : Fragment(), HomeListener {
     private val calendar = Calendar.getInstance()
 
-    val viewModel: ViewModelHome by lazy {
-        ViewModelProviders
-            .of(requireActivity())
-            .get(ViewModelHome::class.java)
+    private val viewModelMain: MainViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
     private val adapterSubject: AdapterSubjectMS by lazy {
-        AdapterSubjectMS(this@HomeFragment.requireContext()!!, mutableListOf())
+        AdapterSubjectMS(requireContext(), viewModelMain.listSubject)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
