@@ -52,6 +52,11 @@ class AdapterHistory(val childFragment: FragmentManager, var list: List<LichSu>)
         notifyDataSetChanged()
     }
 
+    fun loadMore(pos: Int, add: Int): Boolean {
+        notifyItemRangeInserted(pos, add)
+        return true
+    }
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvName = view.findViewById<TextView>(R.id.tv_name_sub_history)
         val tvNameTeacher = view.findViewById<TextView>(R.id.tv_nameTeacher_sub_history)

@@ -20,10 +20,16 @@ class MainViewModel : ViewModel() {
     private val compo by lazy { CompositeDisposable() }
     private val apiManager: ApiManager by lazy { ApiManager() }
     val listMonHoc = MutableLiveData<List<MonHoc>>().apply { value = mutableListOf() }
-    val listLichSuMonHoc = MutableLiveData<List<LichSu>>().apply { value = mutableListOf() }
+
+    val listLichSuMonHoc = MutableLiveData<List<LichSu>>().apply { value = itemsHis }
+    var itemsHis = mutableListOf<LichSu>()
+
     val listSchedule = MutableLiveData<List<ThoiKhoaBieu>>().apply { value = mutableListOf() }
     val listNotifyGeneral = MutableLiveData<List<NotifyGeneral>>().apply { value = mutableListOf() }
     var b=MutableLiveData<Boolean>().apply { value=false }
+
+    val loadMoreHis = MutableLiveData<LoadMoreObject>()
+
     init {
         loadDanhSachMonHoc()
         loadLichSuMonHoc()
@@ -59,13 +65,23 @@ class MainViewModel : ViewModel() {
         )
     }
 
-    private fun loadLichSuMonHoc() {
+    fun loadLichSuMonHoc() {
+        val loadMore = itemsHis.isNotEmpty()
         compo.add(
             apiManager.getLichSuHocTap(17520700, null)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    listLichSuMonHoc.value = it
+                    if (!loadMore) {
+                        itemsHis.clear()
+                        itemsHis.addAll(it)
+                        listLichSuMonHoc.value = itemsHis
+                    } else {
+                        val start = itemsHis.lastIndex
+                        val end = start + it.size
+                        itemsHis.addAll(it)
+                        this.loadMoreHis.value = LoadMoreObject(start, end)
+                    }
                 }, {
 
                 })
