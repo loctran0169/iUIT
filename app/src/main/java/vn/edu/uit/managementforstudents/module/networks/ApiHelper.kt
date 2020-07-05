@@ -27,13 +27,13 @@ interface ApiHelper {
         @Query("maSinhVien") studentId: Int
     ): Call<List<MonHoc>>
 
-    @GET("1b378783-220e-4ada-be9b-82f94ad7b877")
+    @GET("fbfed6a5-1b4d-411a-8194-4eb4632fcfba")
     fun getLichSuHocTap(
         @Query("maSinhVien") studentId: Int,
         @Query("maMonHoc") monHoc: Int?
     ): Call<List<LichSu>>
 
-    @GET("a7598e31-287a-455f-a90a-42ba09fd9dca")
+    @GET("0e8bb4ca-401d-44cb-91a5-96446c978c06")
     fun getSchedule(
         @Query("maSinhVien") studentId: Int,
         @Query("maHocKy") monHoc: Int?
