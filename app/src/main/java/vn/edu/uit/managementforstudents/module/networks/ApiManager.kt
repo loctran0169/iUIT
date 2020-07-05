@@ -7,9 +7,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import vn.edu.uit.managementforstudents.module.models.Diem
-import vn.edu.uit.managementforstudents.module.models.HocPhi
-import vn.edu.uit.managementforstudents.module.models.ThongTinSinhVien
+import vn.edu.uit.managementforstudents.module.models.*
 import java.net.SocketTimeoutException
 import java.util.concurrent.TimeUnit
 
@@ -97,5 +95,11 @@ class ApiManager {
 
     fun getThongTinSinhVien(_id : Int): Single<ThongTinSinhVien> {
         return buildRequest(_apiRestFull.getThongTinSinhVien(_id))
+    }
+    fun getLichHoc(_thu:Int): Single<List<MonHoc>> {
+        return buildRequest(_apiRestFull.getLichHoc(_thu))
+    }
+    fun getNotifyPerson(_id:Int): Single<List<NotifyPerson>> {
+        return buildRequest(_apiRestFull.getNotifyPerson(_id))
     }
 }

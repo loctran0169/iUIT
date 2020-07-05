@@ -18,7 +18,7 @@ class MainFragment : Fragment() {
 
     var backTime = 0L
     val sharedPref: SharedPreferences.Editor by lazy {
-        context!!.getSharedPreferences("iUIT", Context.MODE_PRIVATE).edit()
+        requireContext().getSharedPreferences("iUIT", Context.MODE_PRIVATE).edit()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = Navigation.findNavController(activity!!, R.id.frmMain)
+        val navController = Navigation.findNavController(requireActivity(), R.id.frmMain)
         NavigationUI.setupWithNavController(bottom_navigaion_view, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             sharedPref.putBoolean("MAIN", false)

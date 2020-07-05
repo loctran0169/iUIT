@@ -17,8 +17,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.michalsvec.singlerowcalendar.utils.DateUtils
+import kotlinx.android.synthetic.main.bottom_sheet_fee.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.module.adapters.AdapterSubjectMS
@@ -29,13 +31,13 @@ import java.util.*
 class HomeFragment : Fragment(), HomeListener {
     private val calendar = Calendar.getInstance()
 
-    private val viewModel: MainViewModel by lazy {
+    val viewModel: ViewModelHome by lazy {
         ViewModelProviders
-            .of(this@HomeFragment)
-            .get(MainViewModel::class.java)
+            .of(requireActivity())
+            .get(ViewModelHome::class.java)
     }
     private val adapterSubject: AdapterSubjectMS by lazy {
-        AdapterSubjectMS(this@HomeFragment.context!!, viewModel.listSubject)
+        AdapterSubjectMS(this@HomeFragment.requireContext()!!, mutableListOf())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,7 +47,7 @@ class HomeFragment : Fragment(), HomeListener {
         return binding.root
     }
 
-    @SuppressLint("SetTextI18n")
+  //  @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvDate.text = "Tháng ${DateUtils.getMonthNumber(calendar.time)}, ${DateUtils.getDayNumber(calendar.time)} "
@@ -54,9 +56,14 @@ class HomeFragment : Fragment(), HomeListener {
             adapter = adapterSubject
             layoutManager = LinearLayoutManager(this@HomeFragment.context)
         }
-
+        viewModel.loadMonHoc.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if (!it.isNullOrEmpty()) {
+                adapterSubject.updateDate(it)
+                progressBarHome.visibility=View.GONE
+            }
+        })
         view_space.setOnClickListener {
-            val alert = AlertDialog.Builder(activity!!)
+            val alert = AlertDialog.Builder(requireActivity())
             val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_checkin, null)
             val progressBar = view.findViewById<ConstraintLayout>(R.id.layoutProgressBar)
             val main = view.findViewById<ConstraintLayout>(R.id.layoutMain)
@@ -90,7 +97,10 @@ class HomeFragment : Fragment(), HomeListener {
             }
         }
     }
-
+    override fun onResume() {
+        viewModel.loadHome()
+        super.onResume()
+    }
     fun hideKeyboard(dialog: AlertDialog) {
         val imm = dialog.context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(dialog.currentFocus?.windowToken, 0)
