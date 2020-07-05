@@ -24,6 +24,8 @@ class AdapterShedule(var list: List<MonHoc>) : RecyclerView.Adapter<AdapterShedu
         val p0 = list[position]
         holder.number.text = "${position + 1}"
         holder.name.text = p0.tenMonHoc
+        holder.start.text = p0.thoiGianBatDau
+        holder.end.text = p0.thoiGianKetThuc
     }
 
     fun updateData(items: List<MonHoc>) {
@@ -34,5 +36,7 @@ class AdapterShedule(var list: List<MonHoc>) : RecyclerView.Adapter<AdapterShedu
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val number = view.findViewById<TextView>(R.id.tvNumberSchedule)
         val name = view.findViewById<TextView>(R.id.tvNameSchedule)
+        val start = view.findViewById<TextView>(R.id.tvTimeStart)
+        val end = view.findViewById<TextView>(R.id.tvTimeEnd)
     }
 }

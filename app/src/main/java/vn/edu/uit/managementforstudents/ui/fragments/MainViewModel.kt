@@ -6,16 +6,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import vn.edu.uit.managementforstudents.module.models.LichSu
-import vn.edu.uit.managementforstudents.module.models.NotifyPerson
 import vn.edu.uit.managementforstudents.module.models.MonHoc
+import vn.edu.uit.managementforstudents.module.models.NotifyPerson
 import vn.edu.uit.managementforstudents.module.models.ThoiKhoaBieu
 import vn.edu.uit.managementforstudents.module.networks.ApiManager
 
 class MainViewModel : ViewModel() {
-    val listSubject = listOf(MonHoc("","", "", "", "", true, "", "", "", "","","",1),
-        MonHoc("","", "", "", "", true, "", "", "", "","","",1),
-        MonHoc("","", "", "", "", true, "", "", "", "","","",1),
-        MonHoc("","", "", "", "", true, "", "", "", "","","",1))
+    val listSubject = listOf(MonHoc("", "", "", "", "", true, "", "", "", "", "", "", 1),
+        MonHoc("", "", "", "", "", true, "", "", "", "", "", "", 1),
+        MonHoc("", "", "", "", "", true, "", "", "", "", "", "", 1),
+        MonHoc("", "", "", "", "", true, "", "", "", "", "", "", 1))
     val listNotifyPerson = listOf(NotifyPerson("", "", "", "", "", "", "", "", "", "", "", true),
         NotifyPerson("", "", "", "", "", "", "", "", "", "", "", true),
         NotifyPerson("", "", "", "", "", "", "", "", "", "", "", true),
@@ -31,9 +31,10 @@ class MainViewModel : ViewModel() {
         loadLichSuMonHoc()
         loadSchedule()
     }
+
     private fun loadSchedule() {
         compo.add(
-            apiManager.getSchedule(17520700,6)
+            apiManager.getSchedule(17520700, 6)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -43,6 +44,7 @@ class MainViewModel : ViewModel() {
                 })
         )
     }
+
     private fun loadDanhSachMonHoc() {
         compo.add(
             apiManager.getDanhSachMonHoc(17520700)
@@ -55,9 +57,10 @@ class MainViewModel : ViewModel() {
                 })
         )
     }
+
     private fun loadLichSuMonHoc() {
         compo.add(
-            apiManager.getLichSuHocTap(17520700,null)
+            apiManager.getLichSuHocTap(17520700, null)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

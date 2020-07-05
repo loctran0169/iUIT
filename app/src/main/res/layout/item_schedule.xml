@@ -27,6 +27,7 @@
         app:layout_constraintStart_toEndOf="@id/tvNumberSchedule">
 
         <TextView
+            android:id="@+id/tvTimeStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -37,6 +38,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tvTimeEnd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
