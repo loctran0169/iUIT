@@ -5,26 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.module.adapters.AdapterNotifyGeneral
 import vn.edu.uit.managementforstudents.module.adapters.AdapterNotifyPerson
 import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
-import vn.edu.uit.managementforstudents.ui.fragments.home.ViewModelHome
 
 class FragmentNotifyRecyclerView : Fragment() {
 
     var isPerson = 0
-
+    private val viewModelMain: MainViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+    }
     private val adapterNotifyPerson: AdapterNotifyPerson by lazy {
         AdapterNotifyPerson(activity!!.supportFragmentManager,this@FragmentNotifyRecyclerView.requireContext()!!,mutableListOf())
     }
 
     private val adapterNotifyGeneral: AdapterNotifyGeneral by lazy {
-        AdapterNotifyGeneral(this@FragmentNotifyRecyclerView.requireContext()!!)
+        AdapterNotifyGeneral(this@FragmentNotifyRecyclerView.requireContext()!!,mutableListOf())
     }
 
     val viewModel: ViewModelNotifyPerson by lazy {
@@ -32,7 +34,6 @@ class FragmentNotifyRecyclerView : Fragment() {
             .of(requireActivity())
             .get(ViewModelNotifyPerson::class.java)
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val bundle = arguments
@@ -56,6 +57,13 @@ class FragmentNotifyRecyclerView : Fragment() {
             if (!it.isNullOrEmpty()) {
                 adapterNotifyPerson.updateDate(it)
                 // progressBarHome.visibility=View.GONE
+            }
+        })
+
+
+        viewModelMain.listNotifyGeneral.observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrEmpty()) {
+                adapterNotifyGeneral.updateDate(it)
             }
         })
 

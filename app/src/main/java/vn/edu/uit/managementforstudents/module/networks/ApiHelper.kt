@@ -43,4 +43,10 @@ interface ApiHelper {
     fun getNotifyPerson(
         @Query("maSinhVien") maSinhVien: Int
     ):Call<List<NotifyPerson>>
+
+    @GET("5b06acb2-5008-4959-9aef-bf0a590fca1b")
+    fun getNotifyGeneral(
+        @Query("maSinhVien") maSinhVien: Int
+    ):Call<List<NotifyGeneral>>
+
 }
