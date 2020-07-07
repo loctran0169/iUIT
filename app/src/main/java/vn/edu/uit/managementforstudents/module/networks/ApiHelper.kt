@@ -22,13 +22,38 @@ interface ApiHelper {
         @Query("maSinhVien") studentId: Int
     ): Call<ThongTinSinhVien>
 
-    @GET("f8d5a86d-87da-45e4-bbec-c1daa09f1d9d")
+    @GET("bc30498f-59c5-4bda-a11b-1ab3411f66f8")
     fun getDanhSachMonHoc(
         @Query("maSinhVien") studentId: Int
     ): Call<List<MonHoc>>
 
-    @GET("fbfed6a5-1b4d-411a-8194-4eb4632fcfba")
+    // HDH
+    @GET("6873fcbe-e4dc-4f5d-ad77-916fa9bb76ac")
     fun getLichSuHocTap(
+        @Query("maSinhVien") studentId: Int,
+        @Query("maMonHoc") monHoc: Int?
+    ): Call<List<LichSu>>
+
+    @GET("f42569bc-c75e-40c4-aedd-88de26e04fed")
+    fun getLichSuHocTapHeDieuHanh(
+        @Query("maSinhVien") studentId: Int,
+        @Query("maMonHoc") monHoc: Int?
+    ): Call<List<LichSu>>
+
+    @GET("51253f15-7944-4013-8fb3-567dd298731d")
+    fun getLichSuHocTapHeDieuHanhTH(
+        @Query("maSinhVien") studentId: Int,
+        @Query("maMonHoc") monHoc: Int?
+    ): Call<List<LichSu>>
+
+    @GET("5f559fca-5758-4746-894e-ce2af4e81b4a")
+    fun getLichSuHocTapGame(
+        @Query("maSinhVien") studentId: Int,
+        @Query("maMonHoc") monHoc: Int?
+    ): Call<List<LichSu>>
+
+    @GET("e3b44eef-8fcf-4b61-a6ef-bd218b765946")
+    fun getLichSuHocTapPLDC(
         @Query("maSinhVien") studentId: Int,
         @Query("maMonHoc") monHoc: Int?
     ): Call<List<LichSu>>
@@ -42,11 +67,11 @@ interface ApiHelper {
     @GET("b05e04a3-2507-4c9c-bae6-8fe73daab6ec")
     fun getNotifyPerson(
         @Query("maSinhVien") maSinhVien: Int
-    ):Call<List<NotifyPerson>>
+    ): Call<List<NotifyPerson>>
 
     @GET("5b06acb2-5008-4959-9aef-bf0a590fca1b")
     fun getNotifyGeneral(
         @Query("maSinhVien") maSinhVien: Int
-    ):Call<List<NotifyGeneral>>
+    ): Call<List<NotifyGeneral>>
 
 }

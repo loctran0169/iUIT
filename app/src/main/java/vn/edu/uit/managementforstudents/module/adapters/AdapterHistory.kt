@@ -42,7 +42,7 @@ class AdapterHistory(val childFragment: FragmentManager, var list: List<LichSu>)
         }
         holder.tvProto.text = p0.phuongThuc
         holder.layout.setOnClickListener {
-            val base = BaseBottomSheetHistory()
+            val base = BaseBottomSheetHistory(list[position])
             base.show(childFragment, "")
         }
     }

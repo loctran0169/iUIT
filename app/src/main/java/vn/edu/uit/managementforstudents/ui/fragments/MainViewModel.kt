@@ -32,7 +32,7 @@ class MainViewModel : ViewModel() {
 
     init {
         loadDanhSachMonHoc()
-        loadLichSuMonHoc()
+        loadLichSuMonHoc(null)
         loadSchedule()
         loadNotifyGeneral()
     }
@@ -58,7 +58,7 @@ class MainViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     val data = it.toMutableList()
-                    data.add(0, MonHoc("-1", "Chọn môn học"))
+                    data.add(0, MonHoc(null, "Tất cả"))
                     listMonHoc.value = data
                 }, {
 
@@ -66,26 +66,106 @@ class MainViewModel : ViewModel() {
         )
     }
 
-    fun loadLichSuMonHoc() {
+    fun loadLichSuMonHoc(id : String?) {
         val loadMore = itemsHis.isNotEmpty()
         compo.add(
-            apiManager.getLichSuHocTap(17520700, null)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    if (!loadMore) {
-                        itemsHis.clear()
-                        itemsHis.addAll(it)
-                        listLichSuMonHoc.value = itemsHis
-                    } else {
-                        val start = itemsHis.lastIndex
-                        val end = start + it.size
-                        itemsHis.addAll(it)
-                        this.loadMoreHis.value = LoadMoreObject(start, end)
-                    }
-                }, {
+            when(id){
+               "SS006.K22" -> {
+                   apiManager.getLichSuHocTapPLDC(17520700, null)
+                       .subscribeOn(Schedulers.io())
+                       .observeOn(AndroidSchedulers.mainThread())
+                       .subscribe({
+                           if (!loadMore) {
+                               itemsHis.clear()
+                               itemsHis.addAll(it)
+                               listLichSuMonHoc.value = itemsHis
+                           } else {
+                               val start = itemsHis.lastIndex
+                               val end = start + it.size
+                               itemsHis.addAll(it)
+                               this.loadMoreHis.value = LoadMoreObject(start, end)
+                           }
+                       }, {
 
-                })
+                       })
+               }
+                "IT007.K22.PMCL" -> {
+                    apiManager.getLichSuHocTapHeDieuHanh(17520700, null)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            if (!loadMore) {
+                                itemsHis.clear()
+                                itemsHis.addAll(it)
+                                listLichSuMonHoc.value = itemsHis
+                            } else {
+                                val start = itemsHis.lastIndex
+                                val end = start + it.size
+                                itemsHis.addAll(it)
+                                this.loadMoreHis.value = LoadMoreObject(start, end)
+                            }
+                        }, {
+
+                        })
+                }
+                "IT007.K22.PMCL.2" -> {
+                    apiManager.getLichSuHocTapHeDieuHanhTH(17520700, null)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            if (!loadMore) {
+                                itemsHis.clear()
+                                itemsHis.addAll(it)
+                                listLichSuMonHoc.value = itemsHis
+                            } else {
+                                val start = itemsHis.lastIndex
+                                val end = start + it.size
+                                itemsHis.addAll(it)
+                                this.loadMoreHis.value = LoadMoreObject(start, end)
+                            }
+                        }, {
+
+                        })
+                }
+                "SE102.K21.PMCL" -> {
+                    apiManager.getLichSuHocTapGame(17520700, null)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            if (!loadMore) {
+                                itemsHis.clear()
+                                itemsHis.addAll(it)
+                                listLichSuMonHoc.value = itemsHis
+                            } else {
+                                val start = itemsHis.lastIndex
+                                val end = start + it.size
+                                itemsHis.addAll(it)
+                                this.loadMoreHis.value = LoadMoreObject(start, end)
+                            }
+                        }, {
+
+                        })
+                }
+                else->{
+                    apiManager.getLichSuHocTap(17520700, null)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            if (!loadMore) {
+                                itemsHis.clear()
+                                itemsHis.addAll(it)
+                                listLichSuMonHoc.value = itemsHis
+                            } else {
+                                val start = itemsHis.lastIndex
+                                val end = start + it.size
+                                itemsHis.addAll(it)
+                                this.loadMoreHis.value = LoadMoreObject(start, end)
+                            }
+                        }, {
+
+                        })
+                }
+            }
         )
     }
     private fun loadNotifyGeneral() {

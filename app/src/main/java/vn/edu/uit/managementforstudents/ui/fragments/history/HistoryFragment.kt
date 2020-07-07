@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +18,7 @@ import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 class HistoryFragment : Fragment() {
 
     private var isLoadingHistory = false
+    private var idSelectSpinner = 0
     private val viewModelMain: MainViewModel by lazy {
         ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
@@ -62,14 +62,19 @@ class HistoryFragment : Fragment() {
             }
         })
         spinner_history.setOnItemSelectedListener { view, position, id, item ->
-            Toast.makeText(requireContext(), item.toString(), Toast.LENGTH_SHORT).show()
+            idSelectSpinner = position
+            isLoadingHistory = true
+            progressBarHistory.visibility = View.VISIBLE
+            viewModelMain.itemsHis.clear()
+            adapterHistory.notifyDataSetChanged()
+            viewModelMain.loadLichSuMonHoc(viewModelMain.listMonHoc.value?.get(idSelectSpinner)?.maLopHoc)
         }
         freshHistory.setOnRefreshListener {
             isLoadingHistory = true
             progressBarHistory.visibility = View.VISIBLE
             viewModelMain.itemsHis.clear()
             adapterHistory.notifyDataSetChanged()
-            viewModelMain.loadLichSuMonHoc()
+            viewModelMain.loadLichSuMonHoc(viewModelMain.listMonHoc.value?.get(idSelectSpinner)?.maLopHoc)
         }
         initScrollListener()
     }
@@ -82,7 +87,7 @@ class HistoryFragment : Fragment() {
                 val manager = recyclerView.layoutManager as LinearLayoutManager
                 if (!isLoadingHistory && manager.findLastVisibleItemPosition() >= viewModelMain.listLichSuMonHoc.value!!.size - 5 && viewModelMain.itemsHis.size >= 20) {
                     isLoadingHistory = true
-                    viewModelMain.loadLichSuMonHoc()
+                    viewModelMain.loadLichSuMonHoc(viewModelMain.listMonHoc.value?.get(idSelectSpinner)?.maLopHoc)
                 }
             }
         })
