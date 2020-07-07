@@ -46,8 +46,6 @@ class MainViewModel : ViewModel() {
                     b.value=true
                     listSchedule.value = it
                 }, {
-
-                }, {
                     b.value=true
                 })
         )
