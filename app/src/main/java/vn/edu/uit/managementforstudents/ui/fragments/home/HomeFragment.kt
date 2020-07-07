@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -69,12 +70,12 @@ class HomeFragment : Fragment(), HomeListener {
                     adapterSubject.updateDate(it)
                 }
             })
-        viewModelMain.b.observe(
+        viewModelMain.isLoadSchedule.observe(
             this.viewLifecycleOwner, androidx.lifecycle.Observer {
-                if (it)
-                    tv_no_data.visibility=View.VISIBLE
-                    progressBarHome.visibility=View.GONE
+                if (it) {
+                    progressBarHome.visibility = View.GONE
 
+                }
             }
         )
         view_space.setOnClickListener {
