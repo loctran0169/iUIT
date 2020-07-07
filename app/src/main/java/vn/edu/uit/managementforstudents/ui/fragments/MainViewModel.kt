@@ -21,14 +21,14 @@ class MainViewModel : ViewModel() {
     private val apiManager: ApiManager by lazy { ApiManager() }
     val listMonHoc = MutableLiveData<List<MonHoc>>().apply { value = mutableListOf() }
 
-    val listLichSuMonHoc = MutableLiveData<List<LichSu>>().apply { value = itemsHis }
+    var listLichSuMonHoc = MutableLiveData<List<LichSu>>().apply { value = itemsHis }
     var itemsHis = mutableListOf<LichSu>()
+    var loadMoreHis = MutableLiveData<LoadMoreObject>()
+
 
     val listSchedule = MutableLiveData<List<ThoiKhoaBieu>>().apply { value = mutableListOf() }
     val listNotifyGeneral = MutableLiveData<List<NotifyGeneral>>().apply { value = mutableListOf() }
     var isLoadSchedule=MutableLiveData<Boolean>().apply { value=false }
-
-    val loadMoreHis = MutableLiveData<LoadMoreObject>()
 
     init {
         loadDanhSachMonHoc()
@@ -45,7 +45,6 @@ class MainViewModel : ViewModel() {
                 .subscribe({
                     isLoadSchedule.value=true
                     listSchedule.value = it
-
                 }, {
                     isLoadSchedule.value=true
                 })
@@ -58,7 +57,9 @@ class MainViewModel : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    listMonHoc.value = it
+                    val data = it.toMutableList()
+                    data.add(0, MonHoc("-1", "Chọn môn học"))
+                    listMonHoc.value = data
                 }, {
 
                 })
