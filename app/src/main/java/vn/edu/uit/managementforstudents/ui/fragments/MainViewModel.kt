@@ -28,7 +28,7 @@ class MainViewModel : ViewModel() {
 
     val listSchedule = MutableLiveData<List<ThoiKhoaBieu>>().apply { value = mutableListOf() }
     val listNotifyGeneral = MutableLiveData<List<NotifyGeneral>>().apply { value = mutableListOf() }
-    var b=MutableLiveData<Boolean>().apply { value=false }
+    var isLoadSchedule=MutableLiveData<Boolean>().apply { value=false }
 
     init {
         loadDanhSachMonHoc()
@@ -43,10 +43,10 @@ class MainViewModel : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    b.value=true
+                    isLoadSchedule.value=true
                     listSchedule.value = it
                 }, {
-                    b.value=true
+                    isLoadSchedule.value=true
                 })
         )
     }
