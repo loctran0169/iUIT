@@ -27,11 +27,14 @@ class MainViewModel : ViewModel() {
 
 
     val listSchedule = MutableLiveData<List<ThoiKhoaBieu>>().apply { value = mutableListOf() }
+    val listNotifyGeneral = MutableLiveData<List<NotifyGeneral>>().apply { value = mutableListOf() }
+    var b=MutableLiveData<Boolean>().apply { value=false }
 
     init {
         loadDanhSachMonHoc()
         loadLichSuMonHoc()
         loadSchedule()
+        loadNotifyGeneral()
     }
 
     private fun loadSchedule() {
@@ -40,9 +43,12 @@ class MainViewModel : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    b.value=true
                     listSchedule.value = it
                 }, {
 
+                }, {
+                    b.value=true
                 })
         )
     }
@@ -81,6 +87,17 @@ class MainViewModel : ViewModel() {
                     }
                 }, {
 
+                })
+        )
+    }
+    private fun loadNotifyGeneral() {
+        compo.add(
+            apiManager.getNotifyGeneral(17520700)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    listNotifyGeneral.value=it
+                }, {
                 })
         )
     }

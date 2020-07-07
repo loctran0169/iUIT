@@ -3,6 +3,7 @@ package vn.edu.uit.managementforstudents.module.adapters
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,10 +32,11 @@ class AdapterSubjectMS(val context: Context, var list: List<MonHoc>) : RecyclerV
         if (p0.msTeamCode.equals("")|| p0.msTeamCode.isNullOrEmpty() )
         {
             holder.live.isSelected = true
-            holder.teamCode.text ="Phòng học: "+ p0.tenPhong
+            holder.teamCode.visibility=View.GONE
         }else{
             holder.live.isSelected = false
-            holder.teamCode.text = "Ms Teams: "+p0.msTeamCode
+            holder.teamCode.visibility=View.VISIBLE
+            holder.teamCode.text="MS Teams: "+p0.msTeamCode
             holder.layout.setOnClickListener {
                 val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://teams.microsoft.com/l/team/19%3a387635b906bb4ffe823d737f4eb24368%40thread.tacv2/conversations?groupId=56c72d02-692d-4a19-bafd-9642c96dc657&tenantId=2dff09ac-2b3b-4182-9953-2b548e0d0b39"))
                 if (sendIntent.resolveActivity(context.packageManager) != null) {
@@ -43,14 +45,19 @@ class AdapterSubjectMS(val context: Context, var list: List<MonHoc>) : RecyclerV
             }
         }
 
+        if (p0.tenPhong.equals("")|| p0.tenPhong.isNullOrEmpty() )
+        {
+            holder.room.visibility=View.GONE
+
+        }else{
+            holder.room.visibility=View.VISIBLE
+            holder.room.text="Phòng : "+p0.tenPhong
+        }
         holder.timeStart.text = p0.thoiGianBatDau
         holder.timeEnd.text = p0.thoiGianKetThuc
         holder.dayStart.text ="BĐ: "+ p0.ngayBatDau
         holder.dayEnd.text = "KT: "+p0.ngayKetThuc
         holder.subcode.text= "Mã lớp: "+p0.maLopHoc
-
-
-
     }
 
     fun updateDate(item: List<MonHoc>) {
@@ -62,6 +69,7 @@ class AdapterSubjectMS(val context: Context, var list: List<MonHoc>) : RecyclerV
         var subjectName = view.findViewById<TextView>(R.id.tv_name_sub)
         var teacherName = view.findViewById<TextView>(R.id.tv_teacher_name)
         var teamCode = view.findViewById<TextView>(R.id.tv_code_msteam)
+        var room = view.findViewById<TextView>(R.id.tv_room)
         var timeStart = view.findViewById<TextView>(R.id.tv_time_start)
         var timeEnd = view.findViewById<TextView>(R.id.tv_time_end)
         var dayStart = view.findViewById<TextView>(R.id.tv_day_start)

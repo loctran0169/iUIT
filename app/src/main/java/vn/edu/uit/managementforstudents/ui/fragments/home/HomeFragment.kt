@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.michalsvec.singlerowcalendar.utils.DateUtils
 import kotlinx.android.synthetic.main.bottom_sheet_fee.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_schedule_pager.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.module.adapters.AdapterSubjectMS
 import vn.edu.uit.managementforstudents.databinding.FragmentHomeBinding
@@ -31,36 +32,51 @@ import java.util.*
 
 class HomeFragment : Fragment(), HomeListener {
     private val calendar = Calendar.getInstance()
-
+    private val thu = calendar.get(Calendar.DAY_OF_WEEK)
     private val viewModelMain: MainViewModel by lazy {
         ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
     private val adapterSubject: AdapterSubjectMS by lazy {
-        AdapterSubjectMS(requireContext(), viewModelMain.listSubject)
+        AdapterSubjectMS(requireContext(), mutableListOf())
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this@HomeFragment
         binding.listener = this@HomeFragment
         return binding.root
     }
 
-  //  @SuppressLint("SetTextI18n")
+    //  @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvDate.text = "Tháng ${DateUtils.getMonthNumber(calendar.time)}, ${DateUtils.getDayNumber(calendar.time)} "
+        tvDate.text =
+            "Tháng ${DateUtils.getMonthNumber(calendar.time)}, ${DateUtils.getDayNumber(calendar.time)} "
         tvDay.text = DateUtils.getDayName(calendar.time)
         rcv_subject.run {
             adapter = adapterSubject
             layoutManager = LinearLayoutManager(this@HomeFragment.context)
         }
-//      viewModelMain.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-//            if (!it.isNullOrEmpty()) {
-//                adapterSubject.updateDate(it)
-//                progressBarHome.visibility=View.GONE
-//            }
-//        })
+        viewModelMain.listSchedule.observe(
+            this.viewLifecycleOwner,
+            androidx.lifecycle.Observer { list ->
+                val data = list.find { it.dayName == "T" + thu }
+                data?.mocHoc?.let {
+                    adapterSubject.updateDate(it)
+                }
+            })
+        viewModelMain.b.observe(
+            this.viewLifecycleOwner, androidx.lifecycle.Observer {
+                if (it)
+                    tv_no_data.visibility=View.VISIBLE
+                    progressBarHome.visibility=View.GONE
+
+            }
+        )
         view_space.setOnClickListener {
             val alert = AlertDialog.Builder(requireActivity())
             val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_checkin, null)
@@ -83,7 +99,8 @@ class HomeFragment : Fragment(), HomeListener {
                             progressBar.visibility = View.GONE
                             Toast.makeText(context, "Sai mã xác thực", Toast.LENGTH_SHORT).show()
                         } else
-                            view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility = View.VISIBLE
+                            view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility =
+                                View.VISIBLE
                     }
 
                     override fun onTick(millisUntilFinished: Long) {
@@ -96,12 +113,15 @@ class HomeFragment : Fragment(), HomeListener {
             }
         }
     }
+
     override fun onResume() {
-       // viewModel.loadHome()
+        // viewModel.loadHome()
         super.onResume()
     }
+
     fun hideKeyboard(dialog: AlertDialog) {
-        val imm = dialog.context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        val imm =
+            dialog.context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(dialog.currentFocus?.windowToken, 0)
     }
 }

@@ -5,6 +5,7 @@
     android:layout_height="100dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_notify_general"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
