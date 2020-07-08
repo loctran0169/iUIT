@@ -9,12 +9,6 @@ import vn.edu.uit.managementforstudents.module.models.*
 import vn.edu.uit.managementforstudents.module.networks.ApiManager
 
 class MainViewModel : ViewModel() {
-    val listSubject = listOf(
-        MonHoc("", "", "", "", "", true, "", "", "", "", "", "", 1),
-        MonHoc("", "", "", "", "", true, "", "", "", "", "", "", 1),
-        MonHoc("", "", "", "", "", true, "", "", "", "", "", "", 1),
-        MonHoc("", "", "", "", "", true, "", "", "", "", "", "", 1)
-    )
 
     private val compo by lazy { CompositeDisposable() }
     private val apiManager: ApiManager by lazy { ApiManager() }
@@ -88,23 +82,23 @@ class MainViewModel : ViewModel() {
     fun loadLichSuMonHoc(id : String?) {
         val loadMore = itemsHis.isNotEmpty()
         compo.add(
-            when(id){
-               "SS006.K22" -> {
-                   apiManager.getLichSuHocTapPLDC(17520700, null)
-                       .subscribeOn(Schedulers.io())
-                       .observeOn(AndroidSchedulers.mainThread())
-                       .subscribe({
-                           if (!loadMore) {
-                               itemsHis.clear()
-                               itemsHis.addAll(it)
-                               listLichSuMonHoc.value = itemsHis
-                           } else {
-                               val start = itemsHis.lastIndex
-                               val end = start + it.size
-                               itemsHis.addAll(it)
-                               this.loadMoreHis.value = LoadMoreObject(start, end)
-                           }
-                       }, {
+            when (id) {
+                "SS006.K22" -> {
+                    apiManager.getLichSuHocTapPLDC(17520700, null)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            if (!loadMore) {
+                                itemsHis.clear()
+                                itemsHis.addAll(it)
+                                listLichSuMonHoc.value = itemsHis
+                            } else {
+                                val start = itemsHis.lastIndex
+                                val end = start + it.size
+                                itemsHis.addAll(it)
+                                this.loadMoreHis.value = LoadMoreObject(start, end)
+                            }
+                        }, {
 
                        })
                }

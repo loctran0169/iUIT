@@ -1,6 +1,5 @@
 package vn.edu.uit.managementforstudents.ui.fragments.notify
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_history.*
-import kotlinx.android.synthetic.main.fragment_notify.*
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.module.adapters.AdapterNotifyGeneral
@@ -27,15 +23,11 @@ class FragmentNotifyRecyclerView : Fragment() {
         ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
     private val adapterNotifyPerson: AdapterNotifyPerson by lazy {
-        AdapterNotifyPerson(
-            requireActivity().supportFragmentManager,
-            this@FragmentNotifyRecyclerView.requireContext()!!,
-            mutableListOf()
-        )
+        AdapterNotifyPerson(requireActivity().supportFragmentManager, requireContext(), viewModelMain.listNotifyPerson.value!!)
     }
 
     private val adapterNotifyGeneral: AdapterNotifyGeneral by lazy {
-        AdapterNotifyGeneral(this@FragmentNotifyRecyclerView.requireContext()!!, mutableListOf())
+        AdapterNotifyGeneral(requireContext(), mutableListOf())
     }
 
 
@@ -57,10 +49,10 @@ class FragmentNotifyRecyclerView : Fragment() {
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(context)
-            if (isPerson == 0)
-                adapter = adapterNotifyPerson
+            adapter = if (isPerson == 0)
+                adapterNotifyPerson
             else
-                adapter = adapterNotifyGeneral
+                adapterNotifyGeneral
         }
         if (isPerson == 0)
             viewModelMain.listNotifyPerson.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -78,5 +70,4 @@ class FragmentNotifyRecyclerView : Fragment() {
 
 
     }
-
 }
