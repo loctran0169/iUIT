@@ -88,6 +88,7 @@ class ScheduleFragment : Fragment() {
                     holder.itemView.viewHaveSub.visibility = View.GONE
             }
         }
+        
         val mySelectionManager = object : CalendarSelectionManager {
             override fun canBeItemSelected(position: Int, date: Date): Boolean {
                 return true
@@ -111,10 +112,10 @@ class ScheduleFragment : Fragment() {
             futureDaysCount = 6
             init()
         }
-        if (thu == 1)
-            singleRowCalendar.select(6)
-        else
-            singleRowCalendar.select(calendar.get(Calendar.DAY_OF_WEEK) - 2)
+//        if (thu == 1)
+//            singleRowCalendar.select(6)
+//        else
+//            singleRowCalendar.select(calendar.get(Calendar.DAY_OF_WEEK) - 2)
 
     }
 }

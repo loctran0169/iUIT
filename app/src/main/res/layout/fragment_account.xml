@@ -72,19 +72,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="@id/img_avatar">
 
-                <Switch
-                    android:id="@+id/sw"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:drawableStart="@drawable/ic_dark_mode"
+                    android:drawableStart="@drawable/ic_information"
                     android:drawablePadding="10dp"
-                    android:gravity="center|start"
+                    android:onClick="@{listener::onEditPressed}"
                     android:padding="10dp"
-                    android:text="@string/lbDarkMode"
+                    android:text="Thông tin tài khoản"
                     android:textColor="#000"
                     android:textSize="18sp" />
-
 
                 <TextView
                     android:layout_width="match_parent"
@@ -94,17 +91,6 @@
                     android:onClick="@{listener::onScoreBoardPressed}"
                     android:padding="10dp"
                     android:text="Bảng điểm"
-                    android:textColor="#000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_information"
-                    android:drawablePadding="10dp"
-                    android:onClick="@{listener::onEditPressed}"
-                    android:padding="10dp"
-                    android:text="Thông tin tài khoản"
                     android:textColor="#000"
                     android:textSize="18sp" />
 

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_subject"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="5dp"
     android:layout_marginTop="5dp"
     android:layout_marginEnd="5dp"
-    android:id="@+id/layout_subject"
     android:layout_marginBottom="5dp"
-    android:elevation="4dp"
-    android:background="@drawable/border_10dp">
+    android:background="@drawable/border_10dp"
+    android:elevation="4dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/view_date"
@@ -33,6 +33,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_arrow_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/view_date"
+        app:layout_constraintStart_toStartOf="@id/view_date"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_time_end"
@@ -112,6 +121,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_teacher_name" />
+
         <TextView
             android:id="@+id/tv_code_msteam"
             android:layout_width="0dp"
@@ -124,6 +134,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_room" />
+
         <TextView
             android:id="@+id/tv_day_start"
             android:layout_width="0dp"
