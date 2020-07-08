@@ -29,19 +29,18 @@ class ForgotPasswordFragment : Fragment(), ForgotListener {
         return binding.root
     }
 
-    override fun onBackPressed(view: View) {
-        activity?.onBackPressed()
-    }
 
     override fun onAcceptPressed(view: View) =
-        if (isEmailValid(ed_email_forgot.text?.trim().toString())) {
+        if (isEmailValid(tv_email_forgot.editText?.text?.trim().toString())) {
             progressForgot.visibility = View.VISIBLE
+            whorlForgot.start()
             viewModel.listDangNhap.observe(
                 this.viewLifecycleOwner,
                 androidx.lifecycle.Observer {
                     if (!it.isNullOrEmpty()) {
                         if (it[0].status == "success") {
                             progressForgot.visibility = View.GONE
+                            whorlForgot.stop()
                             Toast.makeText(
                                 requireActivity(),
                                 "Đã gửi email đến bạn",

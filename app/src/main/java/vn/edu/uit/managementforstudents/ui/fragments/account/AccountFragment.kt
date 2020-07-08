@@ -26,7 +26,7 @@ class AccountFragment : Fragment(), AccountListener {
     }
 
     override fun onLogoutPressed(view: View) {
-        (activity as MainActivity).findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_fragment_intro)
+        (activity as MainActivity).findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_loginFragment)
     }
 
     override fun onChangePasswordPressed(view: View) {

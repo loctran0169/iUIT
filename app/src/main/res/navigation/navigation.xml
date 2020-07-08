@@ -3,25 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@+id/fragment_intro">
-    <fragment
-        android:id="@+id/fragment_intro"
-        android:label="Intro Fragment"
-        android:name="vn.edu.uit.managementforstudents.ui.fragments.intro.IntroFragment"
-        tools:layout="@layout/fragment_intro">
-        <action
-            android:id="@+id/action_fragment_intro_to_forgotPasswordFragment"
-            app:destination="@id/forgotPasswordFragment" />
-        <action
-            android:id="@+id/action_fragment_intro_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_fragment_intro_to_registerFragment"
-            app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_fragment_intro_to_forgotPasswordFragment2"
-            app:destination="@id/forgotPasswordFragment" />
-    </fragment>
+    app:startDestination="@+id/loginFragment">
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.intro.forgot_password.ForgotPasswordFragment"
@@ -42,31 +24,23 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:label="Main Fragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.MainFragment"
+        android:label="Main Fragment"
         tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_mainFragment_to_fragment_intro"
-            app:destination="@id/fragment_intro"
-            app:launchSingleTop="true"
-            app:popUpTo="@+id/main_navigation"
-            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment_to_editAccountFragment"
             app:destination="@id/editAccountFragment"
             app:enterAnim="@anim/slide_right"
             app:exitAnim="@anim/slide_left" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="vn.edu.uit.managementforstudents.ui.fragments.intro.register.RegisterFragment"
-        tools:layout="@layout/fragment_register">
         <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/editAccountFragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.account_edit.EditAccountFragment"
-        tools:layout="@layout/fragment_account_edit"/>
+        tools:layout="@layout/fragment_account_edit" />
 </navigation>
