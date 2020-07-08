@@ -1,14 +1,10 @@
 package vn.edu.uit.managementforstudents.ui.fragments.intro.login
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -35,31 +31,27 @@ class LoginFragment : Fragment(), LoginListener {
         return binding.root
     }
 
-    override fun onBackPressed(view: View) {
-        activity?.onBackPressed()
-    }
-
     override fun onLoginPressed(view: View) {
 
-        if (checkEmty()){
-            progressLogin.visibility=View.VISIBLE
+        if (checkEmty()) {
+            progressLogin.visibility = View.VISIBLE
+            whorlLogin.start()
             viewModelMain.listDangNhap.observe(
                 this.viewLifecycleOwner,
                 androidx.lifecycle.Observer {
                     if (!it.isNullOrEmpty()) {
                         if (it[0].status == "success") {
 
-
                             it[0]?.thongTinSinhVien?.let {
                                 viewModelMain.thongTinSinhVien = it[0]
                             }
-                            progressLogin.visibility=View.GONE
+                            progressLogin.visibility = View.GONE
+                            whorlLogin.stop()
                             findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
-
                         }
                     }
-                })}
-        else
+                })
+        } else
             Toast.makeText(requireActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_LONG).show()
 
     }

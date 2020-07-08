@@ -16,12 +16,8 @@ class ForgotPasswordFragment : Fragment(), ForgotListener {
         return binding.root
     }
 
-    override fun onBackPressed(view: View) {
-        activity?.onBackPressed()
-    }
-
     override fun onAcceptPressed(view: View) {
-        activity!!.onBackPressed()
-        Toast.makeText(activity!!, "Đã gửi tới mail của m", Toast.LENGTH_LONG).show()
+        requireActivity().onBackPressed()
+        Toast.makeText(requireActivity(), "Đã gửi tới mail của m", Toast.LENGTH_LONG).show()
     }
 }
