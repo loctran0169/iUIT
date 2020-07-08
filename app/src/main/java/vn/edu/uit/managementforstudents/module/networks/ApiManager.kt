@@ -136,5 +136,8 @@ class ApiManager {
     fun getLoginResponse(_id : Int): Single<List<DangNhap>> {
         return buildRequest(_apiRestFull.getLoginResponse(_id))
     }
+    fun getDiemDanh(_id:String):Single<List<DiemDanh>>{
+        return buildRequest(_apiRestFull.getDiemDanh(_id))
+    }
 
 }
