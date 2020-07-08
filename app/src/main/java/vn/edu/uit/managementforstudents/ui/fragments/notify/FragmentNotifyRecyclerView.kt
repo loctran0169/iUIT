@@ -23,7 +23,7 @@ class FragmentNotifyRecyclerView : Fragment() {
         ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
     private val adapterNotifyPerson: AdapterNotifyPerson by lazy {
-        AdapterNotifyPerson(requireActivity().supportFragmentManager, requireContext(), viewModelMain.loadNotifyPerson.value!!)
+        AdapterNotifyPerson(requireActivity().supportFragmentManager, requireContext(), viewModelMain.listNotifyPerson.value!!)
     }
 
     private val adapterNotifyGeneral: AdapterNotifyGeneral by lazy {

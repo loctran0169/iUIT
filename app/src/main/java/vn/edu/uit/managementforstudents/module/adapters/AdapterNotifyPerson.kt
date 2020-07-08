@@ -30,6 +30,9 @@ class AdapterNotifyPerson(val childFragment: FragmentManager, val context: Conte
         holder.name_sub.text = p0.subject
         holder.day.text = p0.modified
         holder.time.text = p0.date
+        if (p0.isReading)
+            holder.image.isSelected = true
+
         holder.layout.setOnClickListener {
             val base = BaseBottomSheetNotifyPerson(p0)
             holder.image.isSelected = true
