@@ -13,14 +13,14 @@
         android:name="vn.edu.uit.managementforstudents.ui.fragments.intro.login.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_fragmentPlashScreen"
+            app:destination="@id/fragmentPlashScreen"
             app:launchSingleTop="true"
             app:popUpTo="@+id/main_navigation"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
-            app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -29,9 +29,7 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_editAccountFragment"
-            app:destination="@id/editAccountFragment"
-            app:enterAnim="@anim/slide_right"
-            app:exitAnim="@anim/slide_left" />
+            app:destination="@id/editAccountFragment" />
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -43,4 +41,15 @@
         android:id="@+id/editAccountFragment"
         android:name="vn.edu.uit.managementforstudents.ui.fragments.account_edit.EditAccountFragment"
         tools:layout="@layout/fragment_account_edit" />
+    <fragment
+        android:id="@+id/fragmentPlashScreen"
+        android:name="vn.edu.uit.managementforstudents.ui.fragments.FragmentPlashScreen"
+        tools:layout="@layout/fragment_plashscreen">
+        <action
+            android:id="@+id/action_fragmentPlashScreen_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

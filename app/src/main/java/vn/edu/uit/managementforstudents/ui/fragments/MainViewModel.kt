@@ -9,7 +9,7 @@ import vn.edu.uit.managementforstudents.module.models.*
 import vn.edu.uit.managementforstudents.module.networks.ApiManager
 
 class MainViewModel : ViewModel() {
-
+    var isLogin = MutableLiveData<Boolean>().apply { value = false }
     private val compo by lazy { CompositeDisposable() }
     private val apiManager: ApiManager by lazy { ApiManager() }
     val listMonHoc = MutableLiveData<List<MonHoc>>().apply { value = mutableListOf() }
@@ -22,16 +22,14 @@ class MainViewModel : ViewModel() {
     val listSchedule = MutableLiveData<List<ThoiKhoaBieu>>().apply { value = mutableListOf() }
     val listNotifyGeneral = MutableLiveData<List<NotifyGeneral>>().apply { value = mutableListOf() }
     val listNotifyPerson = MutableLiveData<List<NotifyPerson>>().apply { value = mutableListOf() }
-    val listDiemDanh=MutableLiveData<List<DiemDanh>>().apply { value = mutableListOf() }
+    val listDiemDanh = MutableLiveData<List<DiemDanh>>().apply { value = mutableListOf() }
 
-    val listDangNhap= MutableLiveData<List<DangNhap>>().apply { value = mutableListOf() }
     lateinit var thongTinSinhVien: ThongTinSinhVien
 
     var isLoadSchedule = MutableLiveData<Boolean>().apply { value = false }
-    var  isDiemDanh= false
+    var isDiemDanh = false
 
     init {
-        loadDangNhap()
         loadDanhSachMonHoc()
         loadLichSuMonHoc(null)
         loadSchedule()
@@ -39,25 +37,14 @@ class MainViewModel : ViewModel() {
         loadNotifyPerson()
         loadDiemDanh()
     }
-    fun loadDiemDanh(){
+
+    fun loadDiemDanh() {
         compo.add(
             apiManager.getDiemDanh("")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     listDiemDanh.value = it
-                }, {
-
-                })
-        )
-    }
-    fun loadDangNhap(){
-        compo.add(
-            apiManager.getLoginResponse(17520700)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    listDangNhap.value = it
                 }, {
 
                 })
@@ -93,7 +80,7 @@ class MainViewModel : ViewModel() {
         )
     }
 
-    fun loadLichSuMonHoc(id : String?) {
+    fun loadLichSuMonHoc(id: String?) {
         val loadMore = itemsHis.isNotEmpty()
         compo.add(
             when (id) {
@@ -114,8 +101,8 @@ class MainViewModel : ViewModel() {
                             }
                         }, {
 
-                       })
-               }
+                        })
+                }
                 "IT007.K22.PMCL" -> {
                     apiManager.getLichSuHocTapHeDieuHanh(17520700, null)
                         .subscribeOn(Schedulers.io())
@@ -173,7 +160,7 @@ class MainViewModel : ViewModel() {
 
                         })
                 }
-                else->{
+                else -> {
                     apiManager.getLichSuHocTap(17520700, null)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -202,7 +189,7 @@ class MainViewModel : ViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                        listNotifyGeneral.value = it
+                    listNotifyGeneral.value = it
                 }, {
                 })
         )

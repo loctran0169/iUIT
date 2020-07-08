@@ -12,12 +12,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.databinding.FragmentLoginBinding
-import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
+import vn.edu.uit.managementforstudents.module.models.MSSV
+import vn.edu.uit.managementforstudents.module.models.MysharedPreferences
+import vn.edu.uit.managementforstudents.ui.fragments.intro.IntroViewModel
 
 
 class LoginFragment : Fragment(), LoginListener {
-    private val viewModelMain: MainViewModel by lazy {
-        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+    private val viewModel: IntroViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(IntroViewModel::class.java)
+    }
+    private val sharedPreferences: MysharedPreferences by lazy {
+        MysharedPreferences(requireActivity())
     }
 
     override fun onCreateView(
@@ -31,30 +36,35 @@ class LoginFragment : Fragment(), LoginListener {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.listDangNhap.observe(
+            this.viewLifecycleOwner,
+            androidx.lifecycle.Observer {
+                if (!it.isNullOrEmpty()) {
+                    if (it[0].status == "success") {
+                        if (sharedPreferences.getShare.getString(MSSV, null) == null) {
+                            sharedPreferences.saveData(it[0].thongTinSinhVien[0])
+                            Toast.makeText(requireActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
+                        }
+                        progressLogin.visibility = View.GONE
+                        whorlLogin.stop()
+                        findNavController().navigate(R.id.action_loginFragment_to_fragmentPlashScreen)
+                    }
+                }
+            })
+    }
     override fun onLoginPressed(view: View) {
 
         if (checkEmty()) {
             progressLogin.visibility = View.VISIBLE
             whorlLogin.start()
-            viewModelMain.listDangNhap.observe(
-                this.viewLifecycleOwner,
-                androidx.lifecycle.Observer {
-                    if (!it.isNullOrEmpty()) {
-                        if (it[0].status == "success") {
-
-                            it[0]?.thongTinSinhVien?.let {
-                                viewModelMain.thongTinSinhVien = it[0]
-                            }
-                            progressLogin.visibility = View.GONE
-                            whorlLogin.stop()
-                            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
-                        }
-                    }
-                })
+            viewModel.loadDangNhap()
         } else
             Toast.makeText(requireActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_LONG).show()
 
-    }
+    } 
 
     override fun onForgotPassword(view: View) {
         nav_host_fragment.findNavController()

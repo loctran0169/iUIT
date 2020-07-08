@@ -8,12 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.databinding.FragmentAccountBinding
+import vn.edu.uit.managementforstudents.module.models.MysharedPreferences
 import vn.edu.uit.managementforstudents.ui.MainActivity
 import vn.edu.uit.managementforstudents.ui.dialogs.changepassword.DialogChangePassword
 import vn.edu.uit.managementforstudents.ui.dialogs.fee.DialogFee
 import vn.edu.uit.managementforstudents.ui.dialogs.score.DialogScore
 
 class AccountFragment : Fragment(), AccountListener {
+    private val sharedPreferences: MysharedPreferences by lazy {
+        MysharedPreferences(requireActivity())
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentAccountBinding.inflate(inflater, container, false)
         binding.listener = this@AccountFragment
@@ -26,6 +31,7 @@ class AccountFragment : Fragment(), AccountListener {
     }
 
     override fun onLogoutPressed(view: View) {
+        sharedPreferences.removeAll()
         (activity as MainActivity).findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_loginFragment)
     }
 
@@ -34,7 +40,7 @@ class AccountFragment : Fragment(), AccountListener {
     }
 
     override fun onScoreBoardPressed(view: View) {
-        DialogScore().show(childFragmentManager,"Score")
+        DialogScore().show(childFragmentManager, "Score")
     }
 
     override fun onFeePressed(view: View) {

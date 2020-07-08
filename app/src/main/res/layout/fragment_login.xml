@@ -28,6 +28,21 @@
             app:layout_constraintBottom_toTopOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@android:color/transparent"
+            app:cardCornerRadius="75dp"
+            app:layout_constraintBottom_toTopOf="@id/layoutLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/logo_uit_laucher" />
+        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutLogin"
@@ -88,9 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="45dp"
                 app:hintTextAppearance="@style/hint_text_input"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -178,16 +192,17 @@
                 app:whorlview_parallax="fast"
                 app:whorlview_strokeWidth="6"
                 app:whorlview_sweepAngle="90" />
+
             <TextView
-                android:text="Đang đăng nhập"
-                android:fontFamily="@font/montserratmedium"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/whorlLogin"
-                app:layout_constraintStart_toStartOf="@id/whorlLogin"
-                app:layout_constraintEnd_toEndOf="@id/whorlLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="Đang đăng nhập"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@id/whorlLogin"
+                app:layout_constraintStart_toStartOf="@id/whorlLogin"
+                app:layout_constraintTop_toBottomOf="@id/whorlLogin" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
