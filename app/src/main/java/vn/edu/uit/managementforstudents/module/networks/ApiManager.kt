@@ -114,4 +114,8 @@ class ApiManager {
     fun getSchedule(_id : Int, _maHocKy: Int?): Single<List<ThoiKhoaBieu>> {
         return buildRequest(_apiRestFull.getSchedule(_id,_maHocKy))
     }
+    fun getLoginResponse(_id : Int): Single<List<DangNhap>> {
+        return buildRequest(_apiRestFull.getLoginResponse(_id))
+    }
+
 }
