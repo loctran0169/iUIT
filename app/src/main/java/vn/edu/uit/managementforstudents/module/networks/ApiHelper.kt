@@ -74,4 +74,11 @@ interface ApiHelper {
         @Query("maSinhVien") maSinhVien: Int
     ): Call<List<NotifyGeneral>>
 
+    @GET("18cb5b29-9283-4a35-90f6-7230b3c4afa7")
+    fun getLoginResponse(
+        @Query("maSinhVien") maSinhVien: Int
+    ):Call<List<DangNhap>>
+
+
+
 }
