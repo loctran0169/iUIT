@@ -79,6 +79,11 @@ interface ApiHelper {
         @Query("maSinhVien") maSinhVien: Int
     ):Call<List<DangNhap>>
 
+    @GET("18cb5b29-9283-4a35-90f6-7230b3c4afa7")
+    fun getForgotPasswordResponse(
+        @Query("maSinhVien") maSinhVien: Int
+    ):Call<List<DangNhap>>
+
     @GET("2597ad05-8409-4c82-b1ba-22ee14b1d17c")
     fun getDiemDanh(
         @Query("maLopHoc") maLopHoc: String

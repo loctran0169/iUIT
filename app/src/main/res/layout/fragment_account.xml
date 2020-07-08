@@ -106,6 +106,7 @@
                     android:textSize="18sp" />
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchNotify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_bell"

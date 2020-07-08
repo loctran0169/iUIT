@@ -4,4 +4,5 @@ import android.view.View
 
 interface ForgotListener {
     fun onAcceptPressed(view: View)
+    fun onHideKeyBoardPress(view: View)
 }

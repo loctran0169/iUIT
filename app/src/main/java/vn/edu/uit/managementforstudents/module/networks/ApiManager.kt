@@ -50,7 +50,6 @@ class ApiManager {
         return Single.create {
             call.enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
-                    println("### resp ${response.isSuccessful} ${response.code()}")
                     try {
                         it.onSuccess(response.body()!!)
                     } catch (ex: Exception) {
@@ -133,10 +132,16 @@ class ApiManager {
     fun getSchedule(_id: Int, _maHocKy: Int?): Single<List<ThoiKhoaBieu>> {
         return buildRequest(_apiRestFull.getSchedule(_id, _maHocKy))
     }
-    fun getLoginResponse(_id : Int): Single<List<DangNhap>> {
+
+    fun getLoginResponse(_id: Int): Single<List<DangNhap>> {
         return buildRequest(_apiRestFull.getLoginResponse(_id))
     }
-    fun getDiemDanh(_id:String):Single<List<DiemDanh>>{
+
+    fun getForgotPasswordResponse(_id: Int): Single<List<DangNhap>> {
+        return buildRequest(_apiRestFull.getForgotPasswordResponse(_id))
+    }
+
+    fun getDiemDanh(_id: String): Single<List<DiemDanh>> {
         return buildRequest(_apiRestFull.getDiemDanh(_id))
     }
 

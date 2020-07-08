@@ -5,18 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_account.*
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.databinding.FragmentAccountBinding
+import vn.edu.uit.managementforstudents.module.models.AVATAR
+import vn.edu.uit.managementforstudents.module.models.HOTEN
 import vn.edu.uit.managementforstudents.module.models.MysharedPreferences
+import vn.edu.uit.managementforstudents.module.models.NOTIFY
 import vn.edu.uit.managementforstudents.ui.MainActivity
 import vn.edu.uit.managementforstudents.ui.dialogs.changepassword.DialogChangePassword
 import vn.edu.uit.managementforstudents.ui.dialogs.fee.DialogFee
 import vn.edu.uit.managementforstudents.ui.dialogs.score.DialogScore
+import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 
 class AccountFragment : Fragment(), AccountListener {
     private val sharedPreferences: MysharedPreferences by lazy {
         MysharedPreferences(requireActivity())
+    }
+    private val viewModelMain: MainViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -24,6 +34,20 @@ class AccountFragment : Fragment(), AccountListener {
         binding.listener = this@AccountFragment
         binding.lifecycleOwner = this@AccountFragment
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        Glide.with(requireActivity())
+            .load(sharedPreferences.getStringValue(AVATAR))
+            .error(R.drawable.ic_camera)
+            .into(img_avatar)
+        tvName.text = sharedPreferences.getStringValue(HOTEN)
+        switchNotify.isChecked = sharedPreferences.getBoolValue(NOTIFY)
+        switchNotify.setOnClickListener {
+            sharedPreferences.saveBoolean(NOTIFY, switchNotify.isChecked)
+        }
     }
 
     override fun onEditPressed(view: View) {

@@ -51,7 +51,7 @@ class EditAccountFragment : Fragment(), EditAccountListener {
     }
 
     override fun onAcceptPressed(view: View) {
-        Toast.makeText(context, "Chỉnh sửa ok r", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Chỉnh sửa thành công", Toast.LENGTH_SHORT).show()
         getData()?.let { sharedPreferences.saveData(it) }
         isEdit = false
         btn_accept_edit_account.visibility = View.INVISIBLE

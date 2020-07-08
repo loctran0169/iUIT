@@ -189,7 +189,7 @@
                         android:drawablePadding="16dp"
                         android:focusable="false"
                         android:hint="@string/lbEmail"
-                        android:inputType="textEmailAddress"
+                        android:inputType="number"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>

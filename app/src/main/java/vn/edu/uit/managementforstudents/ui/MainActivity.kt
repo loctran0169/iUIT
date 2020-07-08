@@ -35,10 +35,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val id = sharedPreferences.getShare.getString(MSSV, null)
         if (!id.isNullOrBlank()) {
-            Toast.makeText(this, "Đã đăng nhập trước đó", Toast.LENGTH_SHORT).show()
             findNavController(R.id.nav_host_fragment).navigate(R.id.action_loginFragment_to_fragmentPlashScreen)
-        } else
-            Navigation.findNavController(this, R.id.nav_host_fragment)
+        }
+        Navigation.findNavController(this, R.id.nav_host_fragment)
     }
 
     override fun onBackPressed() {

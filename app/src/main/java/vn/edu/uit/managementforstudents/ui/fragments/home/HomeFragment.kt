@@ -15,19 +15,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.michalsvec.singlerowcalendar.utils.DateUtils
-import kotlinx.android.synthetic.main.bottom_sheet_fee.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_schedule_pager.*
 import vn.edu.uit.managementforstudents.R
-import vn.edu.uit.managementforstudents.module.adapters.AdapterSubjectMS
 import vn.edu.uit.managementforstudents.databinding.FragmentHomeBinding
+import vn.edu.uit.managementforstudents.module.adapters.AdapterSubjectMS
 import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
 import java.util.*
 
@@ -53,11 +47,11 @@ class HomeFragment : Fragment(), HomeListener {
         return binding.root
     }
 
-    //  @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvDate.text =
-            ", " + calendar.get(Calendar.DAY_OF_MONTH) + " Tháng " + calendar.get(Calendar.MONTH)
+            " ngày " + calendar.get(Calendar.DAY_OF_MONTH) + " Tháng " + (calendar.get(Calendar.MONTH) + 1)
         if (thu == 1) {
             tvDay.text = "Chủ nhật "
         } else
@@ -76,10 +70,10 @@ class HomeFragment : Fragment(), HomeListener {
             })
         viewModelMain.isLoadSchedule.observe(
             this.viewLifecycleOwner, androidx.lifecycle.Observer {
-                if (it) {
-                    progressBarHome.visibility = View.GONE
-                }
+            if (it) {
+                progressBarHome.visibility = View.GONE
             }
+        }
         )
         view_space.setOnClickListener {
             val alert = AlertDialog.Builder(requireActivity())
@@ -101,25 +95,25 @@ class HomeFragment : Fragment(), HomeListener {
                     dialog.dismiss()
                 }
 
-            }else
-            if (adapterSubject.subNow()?.tenMonHoc.toString()!="null") {
+            } else
+                if (adapterSubject.subNow()?.tenMonHoc.toString() != "null") {
 
-                tbSubject_checkin.text = "Lớp: " + adapterSubject.subNow()?.tenMonHoc
-                alert.setView(view)
-                val dialog = alert.create()
-                dialog.setCanceledOnTouchOutside(false)
-                dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
-                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation_Bottom
-                dialog.show()
-                btnCheckin.setOnClickListener {
-                    var maDiemDanh=""
-                    hideKeyboard(dialog)
-                    progressBar.visibility = View.VISIBLE
-                    object : CountDownTimer(2000, 1250) {
-                        override fun onFinish() {
-                            viewModelMain.listDiemDanh.observe(
-                                viewLifecycleOwner, androidx.lifecycle.Observer { list ->
+                    tbSubject_checkin.text = "Lớp: " + adapterSubject.subNow()?.tenMonHoc
+                    alert.setView(view)
+                    val dialog = alert.create()
+                    dialog.setCanceledOnTouchOutside(false)
+                    dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+                    dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation_Bottom
+                    dialog.show()
+                    btnCheckin.setOnClickListener {
+                        var maDiemDanh = ""
+                        hideKeyboard(dialog)
+                        progressBar.visibility = View.VISIBLE
+                        object : CountDownTimer(2000, 1250) {
+                            override fun onFinish() {
+                                viewModelMain.listDiemDanh.observe(
+                                    viewLifecycleOwner, androidx.lifecycle.Observer { list ->
                                     val data = list.find {
                                         it.maLopHoc.toString()
                                             .equals(adapterSubject.subNow()?.maLopHoc)
@@ -128,26 +122,25 @@ class HomeFragment : Fragment(), HomeListener {
                                         maDiemDanh = it
                                     }
                                 }
-                            )
-                            if (view.findViewById<EditText>(R.id.edit_text_code_verify).text.toString()!=maDiemDanh) {
-                                progressBar.visibility = View.GONE
-                                Toast.makeText(context, "Sai mã xác thực", Toast.LENGTH_SHORT)
-                                    .show()
-                            } else
-                            {
-                                view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility = View.VISIBLE
-                                viewModelMain.isDiemDanh=true
+                                )
+                                if (view.findViewById<EditText>(R.id.edit_text_code_verify).text.toString() != maDiemDanh) {
+                                    progressBar.visibility = View.GONE
+                                    Toast.makeText(context, "Sai mã xác thực", Toast.LENGTH_SHORT)
+                                        .show()
+                                } else {
+                                    view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility = View.VISIBLE
+                                    viewModelMain.isDiemDanh = true
+                                }
                             }
-                        }
 
-                        override fun onTick(millisUntilFinished: Long) {
-                        }
-                    }.start()
+                            override fun onTick(millisUntilFinished: Long) {
+                            }
+                        }.start()
+                    }
+                    view.findViewById<TextView>(R.id.btn_checked).setOnClickListener {
+                        dialog.dismiss()
+                    }
                 }
-                view.findViewById<TextView>(R.id.btn_checked).setOnClickListener {
-                    dialog.dismiss()
-                }
-            }
         }
     }
 

@@ -13,14 +13,20 @@ val NGANH = "NHANH"
 val LOP = "LOP"
 val FACEBOOK = "FACEBOOK"
 val AVATAR = "AVATAR"
-
+val NOTIFY = "NOTIFY"
 class MysharedPreferences(context: Context) {
     private val APP_NAME = "IUIT"
     val getShare = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE)
 
-    fun save(KEY_NAME: String, text: String) {
+    fun saveString(KEY_NAME: String, text: String) {
         val editor = getShare.edit()
         editor.putString(KEY_NAME, text)
+        editor.apply()
+    }
+
+    fun saveBoolean(KEY_NAME: String, bool: Boolean) {
+        val editor = getShare.edit()
+        editor.putBoolean(KEY_NAME, bool)
         editor.apply()
     }
 
@@ -33,7 +39,17 @@ class MysharedPreferences(context: Context) {
 
     fun removeAll() {
         val editor = getShare.edit()
-        editor.clear()
+        editor.remove(MSSV)
+        editor.remove(HOTEN)
+        editor.remove(EMAIL)
+        editor.remove(AVATAR)
+        editor.remove(NGAYSINH)
+        editor.remove(GIOITINH)
+        editor.remove(DIACHI)
+        editor.remove(SDT)
+        editor.remove(EMAIL)
+        editor.remove(FACEBOOK)
+        editor.remove(NGANH)
         editor.apply()
     }
 
@@ -55,6 +71,10 @@ class MysharedPreferences(context: Context) {
 
     fun getStringValue(name : String) : String?{
         return getShare.getString(name, null)
+    }
+
+    fun getBoolValue(name : String) : Boolean{
+        return getShare.getBoolean(name, false)
     }
 
     fun loadData(): ThongTinSinhVien? {

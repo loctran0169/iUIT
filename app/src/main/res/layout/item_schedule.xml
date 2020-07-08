@@ -60,6 +60,7 @@
         android:maxLines="1"
         android:padding="10dp"
         android:text="Kiến Trúc máy tính"
+        android:fontFamily="@font/montserratmedium"
         android:textColor="#045FA6"
         android:textSize="14sp"
         android:textStyle="bold"

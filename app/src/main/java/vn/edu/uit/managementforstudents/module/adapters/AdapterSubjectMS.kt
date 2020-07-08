@@ -60,7 +60,7 @@ class AdapterSubjectMS(val context: Context, var list: List<MonHoc>) :
         holder.timeStart.text = p0.thoiGianBatDau
         holder.timeEnd.text = p0.thoiGianKetThuc
         holder.dayStart.text = "BĐ: " + p0.ngayBatDau
-        holder.dayEnd.text = "KT: " + p0.ngayKetThuc
+        holder.dayEnd.text = "KT:  " + p0.ngayKetThuc
         holder.subcode.text = "Mã lớp: " + p0.maLopHoc
     }
 
