@@ -55,13 +55,12 @@ class HomeFragment : Fragment(), HomeListener {
     //  @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvDate.text =", "+calendar.get(Calendar.DAY_OF_MONTH)+" Tháng " +calendar.get(Calendar.MONTH)
-        if (thu==1)
-        {
-            tvDay.text="Chủ nhật "
-        }
-        else
-            tvDay.text="Thứ "+ thu
+        tvDate.text =
+            ", " + calendar.get(Calendar.DAY_OF_MONTH) + " Tháng " + calendar.get(Calendar.MONTH)
+        if (thu == 1) {
+            tvDay.text = "Chủ nhật "
+        } else
+            tvDay.text = "Thứ " + thu
         rcv_subject.run {
             adapter = adapterSubject
             layoutManager = LinearLayoutManager(this@HomeFragment.context)
@@ -78,46 +77,62 @@ class HomeFragment : Fragment(), HomeListener {
             this.viewLifecycleOwner, androidx.lifecycle.Observer {
                 if (it) {
                     progressBarHome.visibility = View.GONE
-
                 }
             }
         )
         view_space.setOnClickListener {
-            val alert = AlertDialog.Builder(requireActivity())
-            val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_checkin, null)
-            val progressBar = view.findViewById<ConstraintLayout>(R.id.layoutProgressBar)
-            val main = view.findViewById<ConstraintLayout>(R.id.layoutMain)
-            val btnCheckin = view.findViewById<TextView>(R.id.btn_checkin)
-            alert.setView(view)
-            val dialog = alert.create()
-            dialog.setCanceledOnTouchOutside(false)
-            dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation_Bottom
-            dialog.show()
-            btnCheckin.setOnClickListener {
-                hideKeyboard(dialog)
-                progressBar.visibility = View.VISIBLE
-                object : CountDownTimer(2000, 1250) {
-                    override fun onFinish() {
-                        if (view.findViewById<EditText>(R.id.edit_text_code_verify).text.toString() != "8888") {
-                            progressBar.visibility = View.GONE
-                            Toast.makeText(context, "Sai mã xác thực", Toast.LENGTH_SHORT).show()
-                        } else
-                            view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility =
-                                View.VISIBLE
-                    }
+            if (adapterSubject.subNow()?.tenMonHoc.toString()!="null") {
+                val alert = AlertDialog.Builder(requireActivity())
+                val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_checkin, null)
+                val progressBar = view.findViewById<ConstraintLayout>(R.id.layoutProgressBar)
+                val main = view.findViewById<ConstraintLayout>(R.id.layoutMain)
+                val btnCheckin = view.findViewById<TextView>(R.id.btn_checkin)
+                val tbSubject_checkin = view.findViewById<TextView>(R.id.tbSubject_checkin)
+                tbSubject_checkin.text = "Lớp: " + adapterSubject.subNow()?.tenMonHoc
+                alert.setView(view)
+                val dialog = alert.create()
+                dialog.setCanceledOnTouchOutside(false)
+                dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation_Bottom
+                dialog.show()
+                btnCheckin.setOnClickListener {
+                    var maDiemDanh=""
+                    hideKeyboard(dialog)
+                    progressBar.visibility = View.VISIBLE
+                    object : CountDownTimer(2000, 1250) {
+                        override fun onFinish() {
+                            viewModelMain.listDiemDanh.observe(
+                                viewLifecycleOwner, androidx.lifecycle.Observer { list ->
+                                    val data = list.find {
+                                        it.maLopHoc.toString()
+                                            .equals(adapterSubject.subNow()?.maLopHoc)
+                                    }
+                                    data?.maDiemDanh?.let {
+                                        maDiemDanh = it
+                                    }
+                                }
+                            )
+                            if (view.findViewById<EditText>(R.id.edit_text_code_verify).text.toString()!=maDiemDanh) {
+                                progressBar.visibility = View.GONE
+                                Toast.makeText(context, "Sai mã xác thực", Toast.LENGTH_SHORT)
+                                    .show()
+                            } else
+                                view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility =
+                                    View.VISIBLE
+                        }
 
-                    override fun onTick(millisUntilFinished: Long) {
-
-                    }
-                }.start()
-            }
-            view.findViewById<TextView>(R.id.btn_checked).setOnClickListener {
-                dialog.dismiss()
+                        override fun onTick(millisUntilFinished: Long) {
+                        }
+                    }.start()
+                }
+                view.findViewById<TextView>(R.id.btn_checked).setOnClickListener {
+                    dialog.dismiss()
+                }
             }
         }
     }
+
 
     override fun onResume() {
         // viewModel.loadHome()

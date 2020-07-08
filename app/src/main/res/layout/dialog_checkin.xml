@@ -44,7 +44,6 @@
             android:layout_marginEnd="30dp"
             android:gravity="center"
             android:hint="Code xác thực"
-            android:inputType="number"
             android:maxLines="2"
             app:layout_constraintTop_toBottomOf="@id/tbSubject_checkin" />
 

@@ -22,6 +22,7 @@ class MainViewModel : ViewModel() {
     val listSchedule = MutableLiveData<List<ThoiKhoaBieu>>().apply { value = mutableListOf() }
     val listNotifyGeneral = MutableLiveData<List<NotifyGeneral>>().apply { value = mutableListOf() }
     val listNotifyPerson = MutableLiveData<List<NotifyPerson>>().apply { value = mutableListOf() }
+    val listDiemDanh=MutableLiveData<List<DiemDanh>>().apply { value = mutableListOf() }
 
     val listDangNhap= MutableLiveData<List<DangNhap>>().apply { value = mutableListOf() }
     lateinit var thongTinSinhVien: ThongTinSinhVien
@@ -35,7 +36,19 @@ class MainViewModel : ViewModel() {
         loadSchedule()
         loadNotifyGeneral()
         loadNotifyPerson()
+        loadDiemDanh()
+    }
+    fun loadDiemDanh(){
+        compo.add(
+            apiManager.getDiemDanh("")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    listDiemDanh.value = it
+                }, {
 
+                })
+        )
     }
     fun loadDangNhap(){
         compo.add(

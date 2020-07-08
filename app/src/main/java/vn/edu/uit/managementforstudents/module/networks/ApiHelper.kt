@@ -79,6 +79,11 @@ interface ApiHelper {
         @Query("maSinhVien") maSinhVien: Int
     ):Call<List<DangNhap>>
 
+    @GET("2597ad05-8409-4c82-b1ba-22ee14b1d17c")
+    fun getDiemDanh(
+        @Query("maLopHoc") maLopHoc: String
+    ):Call<List<DiemDanh>>
+
 
 
 }
