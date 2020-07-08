@@ -57,14 +57,14 @@ class LoginFragment : Fragment(), LoginListener {
     }
     override fun onLoginPressed(view: View) {
 
-        if (checkEmty()) {
+        if (checkEmpty()) {
             progressLogin.visibility = View.VISIBLE
             whorlLogin.start()
             viewModel.loadDangNhap()
         } else
             Toast.makeText(requireActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_LONG).show()
 
-    } 
+    }
 
     override fun onForgotPassword(view: View) {
         nav_host_fragment.findNavController()
@@ -72,9 +72,8 @@ class LoginFragment : Fragment(), LoginListener {
         Toast.makeText(requireActivity(), "vào màn hình quên pass", Toast.LENGTH_LONG).show()
     }
 
-    fun checkEmty(): Boolean {
-        if (ed_account.text.isNullOrEmpty() || ed_account.text!!.trim()
-                .equals("") || ed_pass.text.isNullOrEmpty() || ed_pass.text!!.trim().equals("")
+    private fun checkEmpty(): Boolean {
+        if (ed_account.text.isNullOrEmpty() || ed_account.text!!.trim() == "" || ed_pass.text.isNullOrEmpty() || ed_pass.text!!.trim().equals("")
         ) {
             return false
         }
