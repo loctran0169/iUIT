@@ -113,6 +113,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="fragmentYoutube">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="36" />
+                            <option name="y" value="360" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="fragment_intro">
                     <value>
                       <LayoutPositions>
@@ -186,6 +198,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_mainFragment_to_editAccountFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_mainFragment_to_fragment_intro">
                               <value>
                                 <LayoutPositions />
