@@ -6,10 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_forgot_password.*
+import kotlinx.coroutines.delay
 import vn.edu.uit.managementforstudents.databinding.FragmentForgotPasswordBinding
+import vn.edu.uit.managementforstudents.ui.fragments.MainViewModel
+import java.util.regex.Pattern
 
 class ForgotPasswordFragment : Fragment(), ForgotListener {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
         binding.listener = this@ForgotPasswordFragment
         binding.lifecycleOwner = this@ForgotPasswordFragment
@@ -20,8 +33,35 @@ class ForgotPasswordFragment : Fragment(), ForgotListener {
         activity?.onBackPressed()
     }
 
-    override fun onAcceptPressed(view: View) {
-        activity!!.onBackPressed()
-        Toast.makeText(activity!!, "Đã gửi tới mail của m", Toast.LENGTH_LONG).show()
+    override fun onAcceptPressed(view: View) =
+        if (isEmailValid(ed_email_forgot.text?.trim().toString())) {
+            progressForgot.visibility = View.VISIBLE
+            viewModel.listDangNhap.observe(
+                this.viewLifecycleOwner,
+                androidx.lifecycle.Observer {
+                    if (!it.isNullOrEmpty()) {
+                        if (it[0].status == "success") {
+                            progressForgot.visibility = View.GONE
+                            Toast.makeText(
+                                requireActivity(),
+                                "Đã gửi email đến bạn",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            activity?.onBackPressed()
+                        }
+                    }
+                })
+        } else
+            Toast.makeText(requireActivity(), "Vui lòng đúng email", Toast.LENGTH_LONG).show()
+
+    fun isEmailValid(email: String): Boolean {
+        return Pattern.compile(
+            "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
+                    + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                    + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                    + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                    + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
+                    + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
+        ).matcher(email).matches()
     }
 }

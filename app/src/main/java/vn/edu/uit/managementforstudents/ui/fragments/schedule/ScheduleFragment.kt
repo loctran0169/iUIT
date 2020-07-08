@@ -20,6 +20,9 @@ import java.util.*
 
 class ScheduleFragment : Fragment() {
 
+
+    private val calendar = Calendar.getInstance()
+    private val thu = calendar.get(Calendar.DAY_OF_WEEK)
     lateinit var singleRowCalendar: SingleRowCalendar
     var posSelected = 0
     val dayName = listOf("T2", "T3", "T4", "T5", "T6", "T7", "CN")
@@ -28,7 +31,11 @@ class ScheduleFragment : Fragment() {
         AdapterPagerSchedule(childFragmentManager)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return LayoutInflater.from(context).inflate(R.layout.fragment_schedule, container, false)
     }
 
@@ -41,7 +48,11 @@ class ScheduleFragment : Fragment() {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
             }
 
             override fun onPageSelected(position: Int) {
@@ -92,7 +103,6 @@ class ScheduleFragment : Fragment() {
                     viewPager_schedule.currentItem = position
                 }
             }
-
         }
         singleRowCalendar = main_single_row_calendar.apply {
             calendarViewManager = myCalendarViewManager
@@ -101,7 +111,10 @@ class ScheduleFragment : Fragment() {
             futureDaysCount = 6
             init()
         }
-        singleRowCalendar.select(0)
+        if (thu == 1)
+            singleRowCalendar.select(6)
+        else
+            singleRowCalendar.select(calendar.get(Calendar.DAY_OF_WEEK) - 2)
 
     }
 }
