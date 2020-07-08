@@ -34,6 +34,7 @@ import java.util.*
 class HomeFragment : Fragment(), HomeListener {
     private val calendar = Calendar.getInstance()
     private val thu = calendar.get(Calendar.DAY_OF_WEEK)
+
     private val viewModelMain: MainViewModel by lazy {
         ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
@@ -81,13 +82,28 @@ class HomeFragment : Fragment(), HomeListener {
             }
         )
         view_space.setOnClickListener {
+            val alert = AlertDialog.Builder(requireActivity())
+            val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_checkin, null)
+            val progressBar = view.findViewById<ConstraintLayout>(R.id.layoutProgressBar)
+            val main = view.findViewById<ConstraintLayout>(R.id.layoutMain)
+            val btnCheckin = view.findViewById<TextView>(R.id.btn_checkin)
+            val tbSubject_checkin = view.findViewById<TextView>(R.id.tbSubject_checkin)
+            if (viewModelMain.isDiemDanh) {
+                alert.setView(view)
+                val dialog = alert.create()
+                dialog.setCanceledOnTouchOutside(false)
+                dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation_Bottom
+                view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility = View.VISIBLE
+                dialog.show()
+                view.findViewById<TextView>(R.id.btn_checked).setOnClickListener {
+                    dialog.dismiss()
+                }
+
+            }else
             if (adapterSubject.subNow()?.tenMonHoc.toString()!="null") {
-                val alert = AlertDialog.Builder(requireActivity())
-                val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_checkin, null)
-                val progressBar = view.findViewById<ConstraintLayout>(R.id.layoutProgressBar)
-                val main = view.findViewById<ConstraintLayout>(R.id.layoutMain)
-                val btnCheckin = view.findViewById<TextView>(R.id.btn_checkin)
-                val tbSubject_checkin = view.findViewById<TextView>(R.id.tbSubject_checkin)
+
                 tbSubject_checkin.text = "Lớp: " + adapterSubject.subNow()?.tenMonHoc
                 alert.setView(view)
                 val dialog = alert.create()
@@ -118,8 +134,10 @@ class HomeFragment : Fragment(), HomeListener {
                                 Toast.makeText(context, "Sai mã xác thực", Toast.LENGTH_SHORT)
                                     .show()
                             } else
-                                view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility =
-                                    View.VISIBLE
+                            {
+                                view.findViewById<ConstraintLayout>(R.id.layoutChecked).visibility = View.VISIBLE
+                                viewModelMain.isDiemDanh=true
+                            }
                         }
 
                         override fun onTick(millisUntilFinished: Long) {

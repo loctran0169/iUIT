@@ -28,6 +28,7 @@ class MainViewModel : ViewModel() {
     lateinit var thongTinSinhVien: ThongTinSinhVien
 
     var isLoadSchedule = MutableLiveData<Boolean>().apply { value = false }
+    var  isDiemDanh= false
 
     init {
         loadDangNhap()
