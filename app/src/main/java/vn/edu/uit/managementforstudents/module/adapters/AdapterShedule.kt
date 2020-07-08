@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import vn.edu.uit.managementforstudents.R
 import vn.edu.uit.managementforstudents.module.models.MonHoc
+import vn.edu.uit.managementforstudents.ui.dialogs.BaseBottomSheetNotifyPerson
+import vn.edu.uit.managementforstudents.ui.dialogs.BaseBottomSheetSubject
 
-class AdapterShedule(var list: List<MonHoc>) : RecyclerView.Adapter<AdapterShedule.ViewHolder>() {
+class AdapterShedule(val childFragment: FragmentManager, var list: List<MonHoc>) : RecyclerView.Adapter<AdapterShedule.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterShedule.ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_schedule, parent, false)
         return ViewHolder(view)
@@ -26,6 +30,10 @@ class AdapterShedule(var list: List<MonHoc>) : RecyclerView.Adapter<AdapterShedu
         holder.name.text = p0.tenMonHoc
         holder.start.text = p0.thoiGianBatDau
         holder.end.text = p0.thoiGianKetThuc
+        holder.itemView.setOnClickListener {
+            val base = BaseBottomSheetSubject(p0)
+            base.show(childFragment, "")
+        }
     }
 
     fun updateData(items: List<MonHoc>) {

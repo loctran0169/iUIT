@@ -26,13 +26,12 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserratmedium"
             android:text="Tháng 04, 4 "
             android:textColor="#ffffff"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvDay"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -40,12 +39,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:fontFamily="@font/montserratregular"
+            android:fontFamily="@font/montserratmedium"
             android:text="Thứ 7"
             android:textColor="#ffffff"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/tvDate"
-            app:layout_constraintStart_toEndOf="@id/tvDate"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvDate" />
 
         <androidx.recyclerview.widget.RecyclerView

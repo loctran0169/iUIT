@@ -21,10 +21,10 @@ class FragmentSchedulePager(val day: String) : Fragment() {
     }
 
     private val adapterMorning: AdapterShedule by lazy {
-        AdapterShedule(mutableListOf())
+        AdapterShedule(requireActivity().supportFragmentManager,mutableListOf())
     }
     private val adapterAfterNoon: AdapterShedule by lazy {
-        AdapterShedule(mutableListOf())
+        AdapterShedule(requireActivity().supportFragmentManager,mutableListOf())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

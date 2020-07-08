@@ -55,9 +55,13 @@ class HomeFragment : Fragment(), HomeListener {
     //  @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvDate.text =
-            "Tháng ${DateUtils.getMonthNumber(calendar.time)}, ${DateUtils.getDayNumber(calendar.time)} "
-        tvDay.text = DateUtils.getDayName(calendar.time)
+        tvDate.text =", "+calendar.get(Calendar.DAY_OF_MONTH)+" Tháng " +calendar.get(Calendar.MONTH)
+        if (thu==1)
+        {
+            tvDay.text="Chủ nhật "
+        }
+        else
+            tvDay.text="Thứ "+ thu
         rcv_subject.run {
             adapter = adapterSubject
             layoutManager = LinearLayoutManager(this@HomeFragment.context)
