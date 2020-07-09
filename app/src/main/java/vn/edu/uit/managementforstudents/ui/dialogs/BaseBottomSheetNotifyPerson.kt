@@ -17,10 +17,10 @@ class BaseBottomSheetNotifyPerson(val input: NotifyPerson) : BottomSheetDialogFr
         return view
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled", "SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         tv_context.text=input.context
-        tvTime.text=input.date
+        tvTime.text="Ngày: "+input.date
         tv_name_teacher.text=input.teacher
         tv_name_khoa.text=input.khoa
         tv_name_sub.text=input.subject
