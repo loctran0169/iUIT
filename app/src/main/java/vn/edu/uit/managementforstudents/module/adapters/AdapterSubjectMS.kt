@@ -42,7 +42,7 @@ class AdapterSubjectMS(val context: Context, var list: List<MonHoc>) :
             holder.layout.setOnClickListener {
                 val sendIntent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("https://teams.microsoft.com/l/team/19%3a387635b906bb4ffe823d737f4eb24368%40thread.tacv2/conversations?groupId=56c72d02-692d-4a19-bafd-9642c96dc657&tenantId=2dff09ac-2b3b-4182-9953-2b548e0d0b39")
+                    Uri.parse(p0.msTeamDeepLink)
                 )
                 if (sendIntent.resolveActivity(context.packageManager) != null) {
                     context.startActivity(sendIntent)
@@ -80,9 +80,9 @@ class AdapterSubjectMS(val context: Context, var list: List<MonHoc>) :
     }
 
     fun compareDate(list: List<Int>): Int {
-        if (calendar.get(Calendar.HOUR_OF_DAY)-3 > list[0]) {
+        if (calendar.get(Calendar.HOUR_OF_DAY) > list[0]) {
             return 1
-        } else if (calendar.get(Calendar.HOUR_OF_DAY)-3 < list[0]) {
+        } else if (calendar.get(Calendar.HOUR_OF_DAY) < list[0]) {
             return -1
         } else {
             if (calendar.get(Calendar.MINUTE) > list[1])

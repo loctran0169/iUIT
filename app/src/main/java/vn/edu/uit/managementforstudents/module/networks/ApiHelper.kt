@@ -58,7 +58,7 @@ interface ApiHelper {
         @Query("maMonHoc") monHoc: Int?
     ): Call<List<LichSu>>
 
-    @GET("0e8bb4ca-401d-44cb-91a5-96446c978c06")
+    @GET("9e78cd4c-2cb2-4978-9a3f-75360384bdf0")
     fun getSchedule(
         @Query("maSinhVien") studentId: Int,
         @Query("maHocKy") monHoc: Int?
